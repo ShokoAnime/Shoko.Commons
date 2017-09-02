@@ -5233,4 +5233,13 @@ Si prega di link a plex tramite Desktop sotto impostazioni-&gt; agli utenti di u
   <data name="NewSeries_NameInfo" xml:space="preserve">
     <value>Il nome del gruppo verrà generato dalle preferenze di titolo dell'anime.</value>
   </data>
+  <data name="Download_Approval" xml:space="preserve">
+    <value>Approvazione</value>
+  </data>
+  <data name="Download_Bookmark" xml:space="preserve">
+    <value>Segnalibro questo anime di scaricare più tardi</value>
+  </data>
+  <data name="Download_RecommendPrompt" xml:space="preserve">
+    <value>Questa utility ti mostra un elenco degli anime consigliati che non sono nella vostra collezione basata sul proprio valutazioni e feedback degli utenti AniDB</value>
+  </data>
 </root>

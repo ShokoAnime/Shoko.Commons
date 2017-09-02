@@ -5233,4 +5233,13 @@ Bitte verlinken Sie auf Plex über Desktop unter Einstellungen-&gt; Benutzer, di
   <data name="NewSeries_NameInfo" xml:space="preserve">
     <value>Der Gruppenname wird aus der Anime-Titel-Einstellungen generiert werden.</value>
   </data>
+  <data name="Download_Approval" xml:space="preserve">
+    <value>Zulassung!</value>
+  </data>
+  <data name="Download_Bookmark" xml:space="preserve">
+    <value>Bookmarken Sie diese Anime später herunterladen</value>
+  </data>
+  <data name="Download_RecommendPrompt" xml:space="preserve">
+    <value>Dieses Dienstprogramm zeigt Ihnen eine Liste der empfohlenen Anime, die nicht in Ihrer Sammlung, die auf der Grundlage von Ihre eigenen Bewertungen und Feedback von Benutzern AniDB sind</value>
+  </data>
 </root>

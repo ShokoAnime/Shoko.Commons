@@ -3724,11 +3724,38 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approval.
+        /// </summary>
+        public static string Download_Approval {
+            get {
+                return ResourceManager.GetString("Download_Approval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bookmark this anime to download later.
+        /// </summary>
+        public static string Download_Bookmark {
+            get {
+                return ResourceManager.GetString("Download_Bookmark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Priority.
         /// </summary>
         public static string Download_Priority {
             get {
                 return ResourceManager.GetString("Download_Priority", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This utility shows you a list of recommended anime which are not in your collection based on your own ratings and feedback from AniDB users.
+        /// </summary>
+        public static string Download_RecommendPrompt {
+            get {
+                return ResourceManager.GetString("Download_RecommendPrompt", resourceCulture);
             }
         }
         
