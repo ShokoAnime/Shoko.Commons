@@ -1780,7 +1780,7 @@
     <value>http://docs.shokoanime.com/desktop/settings.html#anidb</value>
   </data>
   <data name="Link_Blog" xml:space="preserve">
-    <value>http://shokoanime.com/blog</value>
+    <value>https://shokoanime.com/blog</value>
   </data>
   <data name="Link_Changelog" xml:space="preserve">
     <value>http://docs.shokoanime.com/changelog.html</value>
@@ -1789,7 +1789,7 @@
     <value>http://docs.shokoanime.com/faq.html#community-recommendations</value>
   </data>
   <data name="Link_Download" xml:space="preserve">
-    <value>http://shokoanime.com/downloads</value>
+    <value>https://shokoanime.com/downloads</value>
   </data>
   <data name="Link_Downloads" xml:space="preserve">
     <value>http://shokoanime.com/Shoko-desktop/downloads/</value>
@@ -1822,7 +1822,7 @@
     <value>http://docs.shokoanime.com/desktop/settings.html#relations</value>
   </data>
   <data name="Link_Site" xml:space="preserve">
-    <value>http://shokoanime.com/</value>
+    <value>https://shokoanime.com/</value>
   </data>
   <data name="Link_TMDb" xml:space="preserve">
     <value>http://docs.shokoanime.com/desktop/settings.html#tmdb</value>
@@ -4710,13 +4710,13 @@ Mark Unknown - Leaves the file on your list, but changes the state to unkown.</v
     <value>http://docs.shokoanime.com/server/cloud.html</value>
   </data>
   <data name="Link_Contribute" xml:space="preserve">
-    <value>http://shokoanime.com/contribute/</value>
+    <value>https://shokoanime.com/contribute/</value>
   </data>
   <data name="Link_GitHub" xml:space="preserve">
     <value>https://github.com/japanesemediamanager</value>
   </data>
   <data name="Link_Home" xml:space="preserve">
-    <value>http://shokoanime.com/</value>
+    <value>https://shokoanime.com/</value>
   </data>
   <data name="Link_Integrity" xml:space="preserve">
     <value>http://docs.shokoanime.com/server/integrity.html</value>
