@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
     <Version>1.9.0.0</Version>
-    <Company>NutzCode</Company>
+    <Company>ShokoAnime</Company>
     <Description>This is the common library, shared by various clients and the server. It contains all code that may need to be performed on both the clients and server.</Description>
     <Copyright>Copyright (c) 2017 Shoko Anime</Copyright>
     <PackageProjectUrl></PackageProjectUrl>
