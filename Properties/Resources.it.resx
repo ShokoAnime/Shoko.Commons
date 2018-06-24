@@ -129,9 +129,6 @@
   <data name="About_Project" xml:space="preserve">
     <value>Pagina del progetto</value>
   </data>
-  <data name="Actions_SyncVotes" xml:space="preserve">
-    <value>Carica locale voti su AniDB e MAL</value>
-  </data>
   <data name="Add" xml:space="preserve">
     <value>Aggiungere</value>
   </data>
@@ -206,9 +203,6 @@
   </data>
   <data name="AniDBMyListMarkDeleted" xml:space="preserve">
     <value>Contrassegno cancellato</value>
-  </data>
-  <data name="AniDBMyListMarkExternal" xml:space="preserve">
-    <value>Segno esterno (CD/DVD)</value>
   </data>
   <data name="AniDBMyListMarkUnknown" xml:space="preserve">
     <value>Mark Unknown</value>
@@ -1771,70 +1765,70 @@
     <value>Ulteriori informazioni sulla cache web</value>
   </data>
   <data name="Link_AniDBBanned" xml:space="preserve">
-    <value>http://shokoanime.com/FAQ/#Banned-from-AniDB</value>
+    <value>https://docs.shokoanime.com/faq.html#anidb-ban</value>
   </data>
   <data name="Link_AniDBSettings" xml:space="preserve">
-    <value>http://docs.shokoanime.com/desktop/settings.html#anidb</value>
+    <value>https://docs.shokoanime.com/desktop/settings.html#anidb</value>
   </data>
   <data name="Link_Blog" xml:space="preserve">
-    <value>http://shokoanime.com/blog</value>
+    <value>https://shokoanime.com/blog</value>
   </data>
   <data name="Link_Changelog" xml:space="preserve">
-    <value>http://docs.shokoanime.com/changelog.html</value>
+    <value>https://docs.shokoanime.com/changelog.html</value>
   </data>
   <data name="Link_CommunityRecommendation" xml:space="preserve">
-    <value>http://docs.shokoanime.com/faq.html#community-recommendations</value>
+    <value>https://docs.shokoanime.com/faq.html#community-recommendations</value>
   </data>
   <data name="Link_Download" xml:space="preserve">
-    <value>http://shokoanime.com/downloads</value>
+    <value>https://shokoanime.com/downloads</value>
   </data>
   <data name="Link_Downloads" xml:space="preserve">
-    <value>http://shokoanime.com/Shoko-desktop/downloads/</value>
+    <value>https://shokoanime.com/Shoko-desktop/downloads/</value>
   </data>
   <data name="Link_EnableStreaming" xml:space="preserve">
-    <value>http://shokoanime.com/streaming/</value>
+    <value>https://shokoanime.com/streaming/</value>
   </data>
   <data name="Link_FileRenaming" xml:space="preserve">
-    <value>http://docs.shokoanime.com/desktop/utilities.html#file-renaming</value>
+    <value>https://docs.shokoanime.com/desktop/utilities.html#file-renaming</value>
   </data>
   <data name="Link_GroupFilters" xml:space="preserve">
-    <value>http://docs.shokoanime.com/desktop/collection.html#filters</value>
+    <value>https://docs.shokoanime.com/desktop/collection.html#filters</value>
   </data>
   <data name="Link_Help" xml:space="preserve">
-    <value>http://docs.shokoanime.com/index.html</value>
+    <value>https://docs.shokoanime.com/index.html</value>
   </data>
   <data name="Link_ImportFolders" xml:space="preserve">
-    <value>http://docs.shokoanime.com/server/import.html</value>
+    <value>https://docs.shokoanime.com/server/import.html</value>
   </data>
   <data name="Link_Linking" xml:space="preserve">
-    <value>http://docs.shokoanime.com/faq.html#community-links</value>
+    <value>https://docs.shokoanime.com/faq.html#community-links</value>
   </data>
   <data name="Link_MAL" xml:space="preserve">
-    <value>http://docs.shokoanime.com/desktop/settings.html#mal</value>
+    <value>https://docs.shokoanime.com/desktop/settings.html#mal</value>
   </data>
   <data name="Link_MPV" xml:space="preserve">
     <value>https://github.com/rossy/mpv-install/blob/master/README.md</value>
   </data>
   <data name="Link_RelationSettings" xml:space="preserve">
-    <value>http://docs.shokoanime.com/desktop/settings.html#relations</value>
+    <value>https://docs.shokoanime.com/desktop/settings.html#relations</value>
   </data>
   <data name="Link_Site" xml:space="preserve">
-    <value>http://shokoanime.com/</value>
+    <value>https://shokoanime.com/</value>
   </data>
   <data name="Link_TMDb" xml:space="preserve">
-    <value>http://docs.shokoanime.com/desktop/settings.html#tmdb</value>
+    <value>https://docs.shokoanime.com/desktop/settings.html#tmdb</value>
   </data>
   <data name="Link_Trakt" xml:space="preserve">
-    <value>http://docs.shokoanime.com/desktop/settings.html#trakt</value>
+    <value>https://docs.shokoanime.com/desktop/settings.html#trakt</value>
   </data>
   <data name="Link_TvDB" xml:space="preserve">
-    <value>http://docs.shokoanime.com/desktop/settings.html#tvdb</value>
+    <value>https://docs.shokoanime.com/desktop/settings.html#tvdb</value>
   </data>
   <data name="Link_VideoPlayer" xml:space="preserve">
-    <value>http://docs.shokoanime.com/desktop/settings.html#video-player</value>
+    <value>https://docs.shokoanime.com/desktop/settings.html#video-player</value>
   </data>
   <data name="Link_WebCache" xml:space="preserve">
-    <value>http://docs.shokoanime.com/desktop/settings.html#web-cache</value>
+    <value>https://docs.shokoanime.com/desktop/settings.html#web-cache</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Caricamento...</value>
@@ -3707,9 +3701,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="TraktSyncFrequency" xml:space="preserve">
     <value>Sincronizza automaticamente la raccolta</value>
   </data>
-  <data name="Trakt_Authorize" xml:space="preserve">
-    <value>Autorizzazione Shoko</value>
-  </data>
   <data name="Trakt_AutoEpisodeImages" xml:space="preserve">
     <value>Auto Download episodio immagini</value>
   </data>
@@ -3728,17 +3719,11 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   <data name="Trakt_Enable" xml:space="preserve">
     <value>Abilitare Trakt</value>
   </data>
-  <data name="Trakt_GetPIN" xml:space="preserve">
-    <value>Ottenere il Pin</value>
-  </data>
   <data name="Trakt_NoSeasons" xml:space="preserve">
     <value>Nessun stagioni disponibili, controllare nuovamente l'ID Trakt</value>
   </data>
   <data name="Trakt_Password" xml:space="preserve">
     <value>Password</value>
-  </data>
-  <data name="Trakt_PIN" xml:space="preserve">
-    <value>Trakt PIN</value>
   </data>
   <data name="Trakt_SearchInfo" xml:space="preserve">
     <value>Credenziali valide Trakt sono necessari per poter utilizzare questa funzionalità.</value>
@@ -4698,31 +4683,31 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
     <value>https://anidb.net/perl-bin/animedb.pl?show=signup</value>
   </data>
   <data name="Link_AniDBBan" xml:space="preserve">
-    <value>http://docs.shokoanime.com/faq.html#anidb-ban</value>
+    <value>https://docs.shokoanime.com/faq.html#anidb-ban</value>
   </data>
   <data name="Link_CloudAccounts" xml:space="preserve">
-    <value>http://docs.shokoanime.com/server/cloud.html</value>
+    <value>https://docs.shokoanime.com/server/cloud.html</value>
   </data>
   <data name="Link_Contribute" xml:space="preserve">
-    <value>http://shokoanime.com/contribute/</value>
+    <value>https://shokoanime.com/contribute/</value>
   </data>
   <data name="Link_GitHub" xml:space="preserve">
     <value>https://github.com/japanesemediamanager</value>
   </data>
   <data name="Link_Home" xml:space="preserve">
-    <value>http://shokoanime.com/</value>
+    <value>https://shokoanime.com/</value>
   </data>
   <data name="Link_Integrity" xml:space="preserve">
-    <value>http://docs.shokoanime.com/server/integrity.html</value>
+    <value>https://docs.shokoanime.com/server/integrity.html</value>
   </data>
   <data name="Link_MySQL" xml:space="preserve">
-    <value>http://docs.shokoanime.com/server/mysql.html</value>
+    <value>https://docs.shokoanime.com/server/mysql.html</value>
   </data>
   <data name="Link_SharedDrive" xml:space="preserve">
-    <value>http://shokoanime.com/faq/#Shoko-shared-drive</value>
+    <value>https://shokoanime.com/faq/#Shoko-shared-drive</value>
   </data>
   <data name="Link_SQLServer" xml:space="preserve">
-    <value>http://docs.shokoanime.com/server/sqlserver.html</value>
+    <value>https://docs.shokoanime.com/server/sqlserver.html</value>
   </data>
   <data name="LocateSettingsFileDialog" xml:space="preserve">
     <value>Shoko Server non è riuscito a trovare un file di configurazione esistente. Se questa è la prima volta che esegue Shoko Server, puoi ignorare questo messaggio e fare clic su no. Se in precedenza è stato installato JMM Server, fare clic su Sì per selezionare manualmente il file config.</value>
@@ -4753,9 +4738,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="MySQL" xml:space="preserve">
     <value>MySQL</value>
-  </data>
-  <data name="MySQL_Info" xml:space="preserve">
-    <value>MySQL è il tipo di database mid-tier e consigliato per gli utenti Shoko con una grande collezione, che hanno intenzione di costruire una grande collezione o semplicemente si vuole una spinta di velocità e le prestazioni quando si utilizza Shoko. È facile da installare e utilizzando la nostra guida che sarà possibile e funzionante in pochi minuti.</value>
   </data>
   <data name="Rename_Default" xml:space="preserve">
     <value>Impostazione predefinita</value>
@@ -4936,15 +4918,6 @@ Mark Unknown - lascia il file nel tuo elenco, ma cambia lo stato sconosciuto.</v
   </data>
   <data name="SQLite" xml:space="preserve">
     <value>SQLite</value>
-  </data>
-  <data name="SQLite_Info" xml:space="preserve">
-    <value>Mentre SQLite è il più facile dei tipi tre database per l'installazione con impostazione one-click di esso. Se la raccolta contiene 200 o più serie, si inizierà a sperimentare un sacco di problemi tra cui tempi di risposta lenti e blocchi di programma quando Shoko tenta di accedere la collezione tramite il database SQLite. Per quanto riguarda come Shoko utilizza il database, non è semplicemente progettato per grandi collezioni. SQLite ha anche difficoltà con la gestione di più operazioni che aumenta il tempo di attesa tra le operazioni che nel complesso aumentare la vostra attesa tempo quando si accede a vostra collezione.</value>
-  </data>
-  <data name="SQLServer" xml:space="preserve">
-    <value>SQL Server</value>
-  </data>
-  <data name="SQLServer_Info" xml:space="preserve">
-    <value>SQL Server è pensato per gli utenti con una grande collezione che supera oltre 200 serie che vogliono anche le prestazioni più veloci possibili. Fuori i tre tipi di disponibilità del database, SQL Server è considerato il più difficile nella creazione di ma può essere configurato con facilità se si segue la guida che abbiamo creato.</value>
   </data>
   <data name="SQLServer_Memory" xml:space="preserve">
     <value>SQL Server può utilizzare molta memoria</value>
@@ -5214,9 +5187,6 @@ Si può avere solo una cartella elencata come una destinazione di Drop.</value>
   <data name="Command_ValidateAllImages_MovieDBFanarts" xml:space="preserve">
     <value> - MovieDB Fanarts</value>
   </data>
-  <data name="Plex_UsageMessage" xml:space="preserve">
-    <value>Premere il tasto &amp;quot;Link&amp;quot;, quindi inserire il pin indicato all&amp;#39;indirizzo http://plex.tv/pin!</value>
-  </data>
   <data name="DeleteFile_Confirm" xml:space="preserve">
     <value>Selezionare i provider di eliminare il file da.!</value>
   </data>
@@ -5247,5 +5217,56 @@ Si prega di link a plex tramite Desktop sotto impostazioni-&gt; agli utenti di u
   </data>
   <data name="Database_Validating" xml:space="preserve">
     <value>Database - convalida - {0} {1}...</value>
+  </data>
+  <data name="MySQL_Info" xml:space="preserve">
+    <value>MySQL è l'opzione di database di livello intermedio che consente agli utenti di perfezionare ulteriormente il loro database per ottenere tempi di risposta più rapidi. MySQL è perfetto per gli utenti che hanno esperienza con MySQL o coloro che cercano un'alternativa a SQLite e non hanno paura di eseguire ulteriori configurazioni.!</value>
+  </data>
+  <data name="SQLite_Info" xml:space="preserve">
+    <value>SQLite è il più semplice dei tre tipi di database da configurare con la sua configurazione one-click, progettato per gli utenti che desiderano evitare l'installazione di un database aggiuntivo e sono OK con le impostazioni del database predefinite. I tempi di risposta lenti ei problemi con il multiprocessing che sono comuni con i database SQLite sono stati attenuati con il sistema di cache integrato ,!</value>
+  </data>
+  <data name="SQLServer_Info" xml:space="preserve">
+    <value>SQL Server è un'opzione di database avanzata che consente agli utenti di perfezionare ulteriormente il loro database per ottenere tempi di risposta più rapidi. La maggior parte degli utenti non trarrà vantaggio dall'installazione di SQL Server, pertanto è consigliabile utilizzare SQLite o MySQL.!</value>
+  </data>
+  <data name="SQLServer" xml:space="preserve">
+    <value>SQL Server</value>
+  </data>
+  <data name="Plex_UsageMessage" xml:space="preserve">
+    <value>Premere il pulsante "Collegamento", quindi accedere in plex utilizzando il link fornito</value>
+  </data>
+  <data name="ReplaceAllLinks" xml:space="preserve">
+    <value>Sostituire tutti i collegamenti</value>
+  </data>
+  <data name="AniDBMyListMarkDisk" xml:space="preserve">
+    <value>DVD/BD</value>
+  </data>
+  <data name="AniDBMyListRemote" xml:space="preserve">
+    <value>Remoto</value>
+  </data>
+  <data name="AniDBMyListMarkExternal" xml:space="preserve">
+    <value>Mark remoto (Cloud/Backup)</value>
+  </data>
+  <data name="Trakt_GetCode" xml:space="preserve">
+    <value>Ottieni il codice</value>
+  </data>
+  <data name="Trakt_DeviceCode" xml:space="preserve">
+    <value>Codice dispositivo</value>
+  </data>
+  <data name="Tooltip_PreviewTvDB" xml:space="preserve">
+    <value>Anteprima partite di TvDB!</value>
+  </data>
+  <data name="Tooltip_PreviewTvDBInfo" xml:space="preserve">
+    <value>Visualizza episodi / speciali collegati tra AniDB e TvDB.!</value>
+  </data>
+  <data name="Actions_SyncVotes" xml:space="preserve">
+    <value>Caricare locale voti su AniDB.!</value>
+  </data>
+  <data name="Link_CommunitySites" xml:space="preserve">
+    <value>https://docs.shokoanime.com/desktop/settings.html#community-sites</value>
+  </data>
+  <data name="Info_CommunitySites" xml:space="preserve">
+    <value>Il pannello Siti della comunità fornisce un elenco di siti della comunità disponibili che consentono agli utenti di collegare i propri account o fornisce informazioni e immagini aggiuntive utilizzate all&amp;#39;interno di Shoko.!</value>
+  </data>
+  <data name="LearnMore_CommunitySites" xml:space="preserve">
+    <value>Ulteriori informazioni su siti di community!</value>
   </data>
 </root>

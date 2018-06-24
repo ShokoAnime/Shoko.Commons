@@ -59,11 +59,51 @@ namespace Shoko.Commons.Extensions
             return false;
         }
 
+        public static bool IsInYear(this AniDB_Anime anime, int year)
+        {
+            // We don't know when it airs, so it's not happened yet
+            if (anime.AirDate == null) return false;
+
+            // reasons to count in a year:
+            // - starts in the year, unless it aired early
+            // - ends well into the year
+            // - airs all throughout the year (starts in 2015, ends in 2017, 2016 counts)
+
+            DateTime startDate = anime.AirDate.Value;
+
+            // started after the year has ended
+            if (startDate.Year > year) return false;
+
+            if (startDate.Year == year)
+            {
+                // It started in the year, but nowhere near the end
+                if (startDate.Month < 12) return true;
+
+                // implied startDate.Month == 12, unless the calendar changes...
+                // if it's a movie or short series, count it
+                if (anime.AnimeType == (int)AnimeType.Movie || anime.EpisodeCountNormal <= 6) return true;
+            }
+
+            // starts before the year, but continues through it
+            if (startDate.Year < year)
+            {
+                // still airing or finished after the year has been started, with some time for late seasons
+                if (anime.EndDate == null || anime.EndDate.Value >= new DateTime(year, 2, 1)) return true;
+            }
+
+            return false;
+        }
+
+        public static bool IsInYear(this CL_AniDB_AnimeDetailed anime, int year)
+        {
+            return anime?.AniDBAnime?.IsInYear(year) ?? false;
+        }
+
         public static bool IsInSeason(this AniDB_Anime anime, AnimeSeason season, int year)
         {
             if (anime.AirDate == null) return false;
             // If it isn't a normal series, then it won't adhere to standard airing norms
-            if (anime.AnimeType != (int) AnimeType.TVSeries) return false;
+            if (anime.AnimeType != (int) AnimeType.TVSeries && anime.AnimeType != (int) AnimeType.Web) return false;
             DateTime seasonStartBegin;
             DateTime seasonStartEnd;
             switch (season)
@@ -126,6 +166,11 @@ namespace Shoko.Commons.Extensions
                 if (anime.EndDate.Value > seasonStartBegin) return true;
             }
             return false;
+        }
+
+        public static bool IsInSeason(this CL_AniDB_AnimeDetailed anime, AnimeSeason season, int year)
+        {
+            return anime?.AniDBAnime?.IsInSeason(season, year) ?? false;
         }
 
         public static bool IsTvDBLinkDisabled(this AniDB_Anime anime) => (anime.DisableExternalLinksFlag & Shoko.Models.Constants.LinkFlags.FlagLinkTvDB) > 0;
@@ -1011,13 +1056,6 @@ namespace Shoko.Commons.Extensions
         public static string GetSiteURL(this CrossRef_AniDB_MAL crossanidb) => String.Format(Shoko.Models.Constants.URLS.MAL_Series, crossanidb.MALID);
         public static string GetStartEpisodeTypeString(this CrossRef_AniDB_MAL crossanidb) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crossanidb.StartEpisodeType);
 
-        public static string GetSiteURL(this CL_CrossRef_AniDB_MAL_Response response) => String.Format(Shoko.Models.Constants.URLS.MAL_Series, response.MALID);
-
-        public static string GetStartEpisodeTypeString(this CL_CrossRef_AniDB_MAL_Response response) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) response.StartEpisodeType);
-
-        public static bool GetAdminApproved(this CL_CrossRef_AniDB_MAL_Response response) => response.IsAdminApproved == 1;
-        public static string GetEpisodeName(this AniDB_Episode episode) => !String.IsNullOrEmpty(episode.EnglishName) ? episode.EnglishName : episode.RomajiName;
-
         public static string GetSiteURL(this CL_MovieDBMovieSearch_Response sresult) => String.Format(Shoko.Models.Constants.URLS.MovieDB_Series, sresult.MovieID);
 
         public static bool HasAnySpecials(this CL_GroupVideoQuality vidquality) => vidquality.FileCountSpecials > 0;
@@ -1105,9 +1143,6 @@ namespace Shoko.Commons.Extensions
         }
 
         public static string GetSiteURL(this MovieDB_Movie movie) => String.Format(Shoko.Models.Constants.URLS.MovieDB_Series, movie.MovieId);
-        public static string GetSiteURL(this CL_MALAnime_Response malresponse) => String.Format(Shoko.Models.Constants.URLS.MAL_Series, malresponse.id);
-        public static string GetOverview(this CL_MALAnime_Response malresponse) => Formatting.ReparseDescription(malresponse.synopsis);
-        public static string GetPosterPath(this CL_MALAnime_Response malresponse) => String.IsNullOrEmpty(malresponse.image) ? $"pack://application:,,,/{Assembly.GetEntryAssembly().GetName().Name};component/Images/blankposter.png" : malresponse.image;
         public static string GetSeriesURL(this CrossRef_AniDB_TvDBV2 crosstvdb) => String.Format(Shoko.Models.Constants.URLS.TvDB_Series, crosstvdb.TvDBID);
         public static string GetAniDBURL(this CrossRef_AniDB_TvDBV2 crosstvdb) => String.Format(Shoko.Models.Constants.URLS.AniDB_Series, crosstvdb.AnimeID);
         public static string GetAniDBStartEpisodeTypeString(this CrossRef_AniDB_TvDBV2 crosstvdb) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crosstvdb.AniDBStartEpisodeType);

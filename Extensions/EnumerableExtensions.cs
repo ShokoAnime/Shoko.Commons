@@ -8,6 +8,28 @@ namespace Shoko.Commons.Extensions
 {
     public static class EnumerableExtensions
     {
+        private static Random rand;
+
+        static EnumerableExtensions()
+        {
+            rand = new Random();
+        }
+
+
+        public static TSource GetRandomElement<TSource>(this IEnumerable<TSource> source)
+        {
+            // speedup, don't convert to list if it is one
+            if (source is IList<TSource> sourceList)
+            {
+                if (sourceList.Count == 0) return default;
+                return sourceList[rand.Next(sourceList.Count)];
+            }
+
+            var list = source.ToList();
+            if (list.Count == 0) return default;
+            return list.ElementAt(rand.Next(list.Count));
+        }
+
         public static IEnumerable<TSource> DistinctBy<TSource, TKey>
             (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
@@ -21,15 +43,21 @@ namespace Shoko.Commons.Extensions
             }
         }
 
-        public static IEnumerable<T> OrderByNatural<T>(this IEnumerable<T> items, Func<T, string> selector, StringComparer stringComparer = null)
+        public static IOrderedEnumerable<TSource> OrderByNatural<TSource>(this IEnumerable<TSource> items, Func<TSource, string> selector, StringComparer stringComparer = null)
         {
             var regex = new Regex(@"\d+", RegexOptions.Compiled);
 
-            int maxDigits = items
-                                .SelectMany(i => regex.Matches(selector(i)).Cast<Match>().Select(digitChunk => (int?)digitChunk.Value.Length))
-                                .Max() ?? 0;
+            var maxDigits = (items.Select(selector)
+                    .Where(sel => sel != null)
+                    .SelectMany(sel => regex.Matches(sel).Cast<Match>(), (sel, match) => match?.Value?.Length ?? 0))
+                .Concat(new[] {0}).Max();
 
-            return items.OrderBy(i => regex.Replace(selector(i), match => match.Value.PadLeft(maxDigits, '0')), stringComparer ?? StringComparer.CurrentCulture);
+            return items.OrderBy(i => selector(i) != null).ThenBy(i =>
+                {
+                    string sel = selector(i);
+                    if (sel == null) return null;
+                    return regex.Replace(sel, match => match.Value.PadLeft(maxDigits, '0'));
+                }, stringComparer ?? StringComparer.CurrentCulture);
         }
 
         public static string ToRanges(this List<int> ints) {
@@ -134,6 +162,61 @@ namespace Shoko.Commons.Extensions
             }
         }
 
+
+        // These next few for MaxBy are borrowed from MoreLINQ
+         public static IEnumerable<TSource> MaxBy<TSource, TKey>(this IEnumerable<TSource> source,
+            Func<TSource, TKey> selector)
+        {
+            return source.MaxBy(selector, null);
+        }
+
+        public static IEnumerable<TSource> MaxBy<TSource, TKey>(this IEnumerable<TSource> source,
+            Func<TSource, TKey> selector, IComparer<TKey> comparer)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
+
+            comparer = comparer ?? Comparer<TKey>.Default;
+            return ExtremaBy(source, selector, (x, y) => comparer.Compare(x, y));
+        }
+
+        static IEnumerable<TSource> ExtremaBy<TSource, TKey>(IEnumerable<TSource> source,
+            Func<TSource, TKey> selector, Func<TKey, TKey, int> comparer)
+        {
+            foreach (var item in Extrema())
+                yield return item;
+
+            IEnumerable<TSource> Extrema()
+            {
+                using (var e = source.GetEnumerator())
+                {
+                    if (!e.MoveNext())
+                        return new List<TSource>();
+
+                    var extrema = new List<TSource> { e.Current };
+                    var extremaKey = selector(e.Current);
+
+                    while (e.MoveNext())
+                    {
+                        var item = e.Current;
+                        var key = selector(item);
+                        var comparison = comparer(key, extremaKey);
+                        if (comparison > 0)
+                        {
+                            extrema = new List<TSource> { item };
+                            extremaKey = key;
+                        }
+                        else if (comparison == 0)
+                        {
+                            extrema.Add(item);
+                        }
+                    }
+
+                    return extrema;
+                }
+            }
+        }
+
         /// <summary>
         /// Converts the specified sequence into a <see cref="HashSet{T}"/>
         /// </summary>
@@ -168,6 +251,16 @@ namespace Shoko.Commons.Extensions
             }
 
             return source.ToList();
+        }
+
+        public static IEnumerable<IEnumerable<T>> GetPermutations<T>(this IEnumerable<T> list, int length = -1)
+        {
+            if (length == -1) length = list.Count();
+            if (length == 1) return list.Select(t => new[] { t });
+
+            return GetPermutations(list, length - 1)
+                .SelectMany(t => list.Where(e => !t.Contains(e)),
+                    (t1, t2) => t1.Concat(new[] { t2 }));
         }
     }
 }

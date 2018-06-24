@@ -71,6 +71,9 @@ namespace Shoko.Commons.Utils
 
         public static IQueryable<T> SortGroups<T>(this CL_GroupFilter gf, IQueryable<T> list) where T: CL_AnimeGroup_User
         {
+
+
+
             List<GroupFilterSortingCriteria> criterias = GroupFilterSortingCriteria.Create(gf.GroupFilterID, gf.SortingCriteria);
             foreach (GroupFilterSortingCriteria f in criterias)
             {
@@ -81,7 +84,7 @@ namespace Shoko.Commons.Utils
 
         public static IQueryable<T> GeneratePredicate<T>(this IQueryable<T> lst, GroupFilterSorting sortType, GroupFilterSortDirection sortDirection) where T : CL_AnimeGroup_User
         {
-            Expression<Func<T, dynamic>> selector;
+            Expression<Func<T, object>> selector;
 
             switch (sortType)
             {
@@ -333,10 +336,10 @@ namespace Shoko.Commons.Utils
         }
 
         // A char array of the allowed characters. This should be infinitely faster
-        private static readonly char[] AllowedSearchCharacters =
-            (" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!+-.?,/*&`'\"_").ToCharArray();
+        private static readonly HashSet<char> AllowedSearchCharacters =
+            (" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!.?*&").ToHashSet();
 
-        public static string FilterCharacters(this string value, char[] allowed, bool blacklist = false)
+        public static string FilterCharacters(this string value, IEnumerable<char> allowed, bool blacklist = false)
         {
             StringBuilder sb = new StringBuilder(value);
             int dest = 0;
@@ -428,66 +431,47 @@ namespace Shoko.Commons.Utils
         /// <returns></returns>
         public static int BitapFuzzySearch32(string text, string pattern, int k, out int dist)
         {
-            // This forces ASCII, because it's faster to stop caring if ss and ß are the same
-            // No it's not perfect, but it works better for those who just want to do lazy searching
-            string inputString = text.FilterCharacters(AllowedSearchCharacters);
-            string query = pattern.FilterCharacters(AllowedSearchCharacters);
-            inputString = inputString.Replace('_', ' ').Replace('-', ' ');
-            query = query.Replace('_', ' ').Replace('-', ' ');
-            query = query.CompactWhitespaces();
-            inputString = inputString.CompactWhitespaces();
-            // Case insensitive. We just removed the fancy characters, so latin alphabet lowercase is all we should have
-            query = query.ToLowerInvariant();
-            inputString = inputString.ToLowerInvariant();
-
-            // Shortcut
-            if (text.Equals(query))
-            {
-                dist = 0;
-                return 0;
-            }
-
             int result = -1;
-            int m = query.Length;
-            int[] R;
-            int[] patternMask = new int[128];
+            int m = pattern.Length;
+            uint[] R;
+            uint[] patternMask = new uint[128];
             int i, d;
             dist = k + 1;
 
             // We are doing bitwise operations, this can be affected by how many bits the CPU is able to process
-            int WORD_SIZE = 31;
+            const int WORD_SIZE = 31;
 
-            if (String.IsNullOrEmpty(query)) return -1;
+            if (string.IsNullOrEmpty(pattern)) return -1;
             if (m > WORD_SIZE) return -1; //Error: The pattern is too long!
 
-            R = new int[(k + 1) * sizeof(int)];
+            R = new uint[(k + 1) * sizeof(uint)];
             for (i = 0; i <= k; ++i)
-                R[i] = ~1;
+                R[i] = ~1u;
 
             for (i = 0; i <= 127; ++i)
-                patternMask[i] = ~0;
+                patternMask[i] = ~0u;
 
             for (i = 0; i < m; ++i)
-                patternMask[query[i]] &= ~(1 << i);
+                patternMask[pattern[i]] &= ~(1u << i);
 
-            for (i = 0; i < inputString.Length; ++i)
+            for (i = 0; i < text.Length; ++i)
             {
-                int oldRd1 = R[0];
+                uint oldRd1 = R[0];
 
-                R[0] |= patternMask[inputString[i]];
+                R[0] |= patternMask[text[i]];
                 R[0] <<= 1;
 
                 for (d = 1; d <= k; ++d)
                 {
-                    int tmp = R[d];
+                    uint tmp = R[d];
 
-                    R[d] = (oldRd1 & (R[d] | patternMask[inputString[i]])) << 1;
+                    R[d] = (oldRd1 & (R[d] | patternMask[text[i]])) << 1;
                     oldRd1 = tmp;
                 }
 
                 if (0 == (R[k] & (1 << m)))
                 {
-                    dist = R[k];
+                    dist = R[k] > int.MaxValue ? int.MaxValue : Convert.ToInt32(R[k]);
                     result = (i - m) + 1;
                     break;
                 }
@@ -496,38 +480,19 @@ namespace Shoko.Commons.Utils
             return result;
         }
 
-        public static int BitapFuzzySearch64(string text, string pattern, int k, out int dist)
+        public static int BitapFuzzySearch64(string inputString, string query, int k, out int dist)
         {
-            // This forces ASCII, because it's faster to stop caring if ss and ß are the same
-            // No it's not perfect, but it works better for those who just want to do lazy searching
-            string inputString = text.FilterCharacters(AllowedSearchCharacters);
-            string query = pattern.FilterCharacters(AllowedSearchCharacters);
-            inputString = inputString.Replace('_', ' ').Replace('-', ' ');
-            query = query.Replace('_', ' ').Replace('-', ' ');
-            query = query.CompactWhitespaces();
-            inputString = inputString.CompactWhitespaces();
-            // Case insensitive. We just removed the fancy characters, so latin alphabet lowercase is all we should have
-            query = query.ToLowerInvariant();
-            inputString = inputString.ToLowerInvariant();
-
-            // Shortcut
-            if (text.Equals(query))
-            {
-                dist = 0;
-                return 0;
-            }
-
             int result = -1;
             int m = query.Length;
             ulong[] R;
             ulong[] patternMask = new ulong[128];
             int i, d;
-            dist = text.Length;
+            dist = inputString.Length;
 
             // We are doing bitwise operations, this can be affected by how many bits the CPU is able to process
-            int WORD_SIZE = 63;
+            const int WORD_SIZE = 63;
 
-            if (String.IsNullOrEmpty(query)) return -1;
+            if (string.IsNullOrEmpty(query)) return -1;
             if (m > WORD_SIZE) return -1; //Error: The pattern is too long!
 
             R = new ulong[(k + 1) * sizeof(ulong)];
@@ -557,7 +522,7 @@ namespace Shoko.Commons.Utils
 
                 if (0 == (R[k] & (1UL << m)))
                 {
-                    dist = (int)R[k];
+                    dist = R[k] > int.MaxValue ? int.MaxValue : Convert.ToInt32(R[k]);
                     result = (i - m) + 1;
                     break;
                 }
@@ -568,18 +533,43 @@ namespace Shoko.Commons.Utils
 
         public static int BitapFuzzySearch(string text, string pattern, int k, out int dist)
         {
+            // This forces ASCII, because it's faster to stop caring if ss and ß are the same
+            // No it's not perfect, but it works better for those who just want to do lazy searching
+            string inputString = text.FilterCharacters(AllowedSearchCharacters);
+            string query = pattern.FilterCharacters(AllowedSearchCharacters);
+            inputString = inputString.Replace('_', ' ').Replace('-', ' ');
+            query = query.Replace('_', ' ').Replace('-', ' ');
+            query = query.CompactWhitespaces();
+            inputString = inputString.CompactWhitespaces();
+            // Case insensitive. We just removed the fancy characters, so latin alphabet lowercase is all we should have
+            query = query.ToLowerInvariant();
+            inputString = inputString.ToLowerInvariant();
+
+            if (string.IsNullOrEmpty(query) || string.IsNullOrEmpty(inputString))
+            {
+                dist = text.Length;
+                return -1;
+            }
+
+            // Shortcut
+            if (inputString.Contains(query))
+            {
+                dist = int.MinValue;
+                return 0;
+            }
+
             if (IntPtr.Size > 4)
             {
-                return BitapFuzzySearch64(text, pattern, k, out dist);
+                return BitapFuzzySearch64(inputString, query, k, out dist);
             }
-            return BitapFuzzySearch32(text, pattern, k, out dist);
+            return BitapFuzzySearch32(inputString, query, k, out dist);
         }
 
         public static bool FuzzyMatches(this string text, string query)
         {
             int k = Math.Max(Math.Min((int)(text.Length / 6D), (int)(query.Length / 6D)), 1);
             if (query.Length <= 4 || text.Length <= 4) k = 0;
-            return BitapFuzzySearch(text, query, k, out int dist) > -1;
+            return BitapFuzzySearch(text, query, k, out int _) > -1;
         }
         private static readonly SecurityIdentifier _everyone = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
         public static List<string> RecursiveGetDirectoriesWithoutEveryonePermission(string path)
@@ -683,7 +673,7 @@ namespace Shoko.Commons.Utils
 
         public static ImageFormatEnum GetImageFormat(byte[] bytes)
         {
-            // see http://www.mikekunz.com/image_file_header.html
+            // see https://www.mikekunz.com/image_file_header.html
             var bmp    = Encoding.ASCII.GetBytes("BM");     // BMP
             var gif    = Encoding.ASCII.GetBytes("GIF");    // GIF
             var png    = new byte[] { 137, 80, 78, 71 };    // PNG
@@ -719,6 +709,12 @@ namespace Shoko.Commons.Utils
                 return ImageFormatEnum.jpeg;
 
             return ImageFormatEnum.unknown;
+        }
+
+        public static void Deconstruct<T, T1>(this KeyValuePair<T, T1> kvp, out T key, out T1 value)
+        {
+            key = kvp.Key;
+            value = kvp.Value;
         }
     }
 }

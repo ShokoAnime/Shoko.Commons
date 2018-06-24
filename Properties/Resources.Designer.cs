@@ -19,7 +19,7 @@ namespace Shoko.Commons.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -169,7 +169,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upload Local Votes To AniDB And MAL.
+        ///   Looks up a localized string similar to Upload Local Votes To AniDB..
         /// </summary>
         public static string Actions_SyncVotes {
             get {
@@ -682,7 +682,16 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mark External (CD/DVD).
+        ///   Looks up a localized string similar to DVD/BD.
+        /// </summary>
+        public static string AniDBMyListMarkDisk {
+            get {
+                return ResourceManager.GetString("AniDBMyListMarkDisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mark Remote (Cloud/Backup).
         /// </summary>
         public static string AniDBMyListMarkExternal {
             get {
@@ -723,6 +732,15 @@ namespace Shoko.Commons.Properties {
         public static string AniDBMyListReadWatched {
             get {
                 return ResourceManager.GetString("AniDBMyListReadWatched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remote.
+        /// </summary>
+        public static string AniDBMyListRemote {
+            get {
+                return ResourceManager.GetString("AniDBMyListRemote", resourceCulture);
             }
         }
         
@@ -6118,6 +6136,15 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Community Sites panel provides a list of available community sites that either allows users to link their accounts or provides additional information and images that&apos;s used within Shoko..
+        /// </summary>
+        public static string Info_CommunitySites {
+            get {
+                return ResourceManager.GetString("Info_CommunitySites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Here you can configure your torrent program settings, what sites to use for searching and input your login information for supported sites..
         /// </summary>
         public static string Info_Downloads {
@@ -6613,6 +6640,15 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Learn more about community sites.
+        /// </summary>
+        public static string LearnMore_CommunitySites {
+            get {
+                return ResourceManager.GetString("LearnMore_CommunitySites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Learn more about using Shoko to download anime.
         /// </summary>
         public static string LearnMore_Downloads {
@@ -6685,7 +6721,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/faq.html#anidb-ban.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/faq.html#anidb-ban.
         /// </summary>
         public static string Link_AniDBBan {
             get {
@@ -6694,7 +6730,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://shokoanime.com/FAQ/#Banned-from-anidb.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/faq.html#anidb-ban.
         /// </summary>
         public static string Link_AniDBBanned {
             get {
@@ -6703,7 +6739,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/desktop/settings.html#anidb.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/desktop/settings.html#anidb.
         /// </summary>
         public static string Link_AniDBSettings {
             get {
@@ -6712,7 +6748,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://shokoanime.com/blog.
+        ///   Looks up a localized string similar to https://shokoanime.com/blog.
         /// </summary>
         public static string Link_Blog {
             get {
@@ -6721,7 +6757,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/changelog.html.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/changelog.html.
         /// </summary>
         public static string Link_Changelog {
             get {
@@ -6730,7 +6766,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/server/cloud.html.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/server/cloud.html.
         /// </summary>
         public static string Link_CloudAccounts {
             get {
@@ -6739,7 +6775,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/faq.html#community-recommendations.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/faq.html#community-recommendations.
         /// </summary>
         public static string Link_CommunityRecommendation {
             get {
@@ -6748,7 +6784,16 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://shokoanime.com/contribute/.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/desktop/settings.html#community-sites.
+        /// </summary>
+        public static string Link_CommunitySites {
+            get {
+                return ResourceManager.GetString("Link_CommunitySites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://shokoanime.com/contribute/.
         /// </summary>
         public static string Link_Contribute {
             get {
@@ -6757,7 +6802,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://shokoanime.com/downloads.
+        ///   Looks up a localized string similar to https://shokoanime.com/downloads.
         /// </summary>
         public static string Link_Download {
             get {
@@ -6766,7 +6811,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://shokoanime.com/Shoko-desktop/downloads/.
+        ///   Looks up a localized string similar to https://shokoanime.com/Shoko-desktop/downloads/.
         /// </summary>
         public static string Link_Downloads {
             get {
@@ -6775,7 +6820,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://shokoanime.com/streaming/.
+        ///   Looks up a localized string similar to https://shokoanime.com/streaming/.
         /// </summary>
         public static string Link_EnableStreaming {
             get {
@@ -6784,7 +6829,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/desktop/utilities.html#file-renaming.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/desktop/utilities.html#file-renaming.
         /// </summary>
         public static string Link_FileRenaming {
             get {
@@ -6802,7 +6847,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/desktop/collection.html#filters.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/desktop/collection.html#filters.
         /// </summary>
         public static string Link_GroupFilters {
             get {
@@ -6811,7 +6856,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/index.html.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/index.html.
         /// </summary>
         public static string Link_Help {
             get {
@@ -6820,7 +6865,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://shokoanime.com/.
+        ///   Looks up a localized string similar to https://shokoanime.com/.
         /// </summary>
         public static string Link_Home {
             get {
@@ -6829,7 +6874,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/server/import.html.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/server/import.html.
         /// </summary>
         public static string Link_ImportFolders {
             get {
@@ -6838,7 +6883,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/server/integrity.html.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/server/integrity.html.
         /// </summary>
         public static string Link_Integrity {
             get {
@@ -6847,7 +6892,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/faq.html#community-links.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/faq.html#community-links.
         /// </summary>
         public static string Link_Linking {
             get {
@@ -6856,7 +6901,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/desktop/settings.html#mal.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/desktop/settings.html#mal.
         /// </summary>
         public static string Link_MAL {
             get {
@@ -6874,7 +6919,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/server/mysql.html.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/server/mysql.html.
         /// </summary>
         public static string Link_MySQL {
             get {
@@ -6883,7 +6928,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/desktop/settings.html#relations.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/desktop/settings.html#relations.
         /// </summary>
         public static string Link_RelationSettings {
             get {
@@ -6892,7 +6937,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://shokoanime.com/faq/#Shoko-shared-drive.
+        ///   Looks up a localized string similar to https://shokoanime.com/faq/#Shoko-shared-drive.
         /// </summary>
         public static string Link_SharedDrive {
             get {
@@ -6901,7 +6946,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://shokoanime.com/.
+        ///   Looks up a localized string similar to https://shokoanime.com/.
         /// </summary>
         public static string Link_Site {
             get {
@@ -6910,7 +6955,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/server/sqlserver.html.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/server/sqlserver.html.
         /// </summary>
         public static string Link_SQLServer {
             get {
@@ -6919,7 +6964,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/desktop/settings.html#tmdb.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/desktop/settings.html#tmdb.
         /// </summary>
         public static string Link_TMDb {
             get {
@@ -6928,7 +6973,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/desktop/settings.html#trakt.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/desktop/settings.html#trakt.
         /// </summary>
         public static string Link_Trakt {
             get {
@@ -6937,7 +6982,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/desktop/settings.html#tvdb.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/desktop/settings.html#tvdb.
         /// </summary>
         public static string Link_TvDB {
             get {
@@ -6946,7 +6991,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/desktop/settings.html#video-player.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/desktop/settings.html#video-player.
         /// </summary>
         public static string Link_VideoPlayer {
             get {
@@ -6955,7 +7000,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://docs.shokoanime.com/desktop/settings.html#web-cache.
+        ///   Looks up a localized string similar to https://docs.shokoanime.com/desktop/settings.html#web-cache.
         /// </summary>
         public static string Link_WebCache {
             get {
@@ -8134,7 +8179,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MySQL is the mid-tier and recommended database type for Shoko users with a large collection, who intend to build a large collection or simply want a speed and performance boost when using Shoko . It is easy to setup and using our guide you’ll be up and running in a matter of minutes..
+        ///   Looks up a localized string similar to MySQL is the mid-tier database option that allows users to further fine-tune their database to achieve quicker response times. MySQL is perfect for users with experience using MySQL or those looking for an alternative to SQLite and are not afraid to perform additional configuring..
         /// </summary>
         public static string MySQL_Info {
             get {
@@ -8558,7 +8603,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Press &quot;Link&quot; button, then enter the provided pin at http://plex.tv/pin.
+        ///   Looks up a localized string similar to Press &quot;Link&quot; button, then log into plex using the provided link.
         /// </summary>
         public static string Plex_UsageMessage {
             get {
@@ -9814,6 +9859,15 @@ namespace Shoko.Commons.Properties {
         public static string Rename_Year {
             get {
                 return ResourceManager.GetString("Rename_Year", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace All Links.
+        /// </summary>
+        public static string ReplaceAllLinks {
+            get {
+                return ResourceManager.GetString("ReplaceAllLinks", resourceCulture);
             }
         }
         
@@ -11627,7 +11681,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to While SQLite is the easiest of the three database types to setup with it&apos;s one-click setup. If your collection contains 200 or more series, you will start to experience a lot of issues including slow response times and program lockups when Shoko attempts to access your collection via your SQLite database. In regards to how Shoko uses the database, it&apos;s simply not designed for large collections. SQLite also has difficulty with handling multiple operations which increases the wait time between operations whic [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to SQLite is the easiest of the three database types to setup with its one-click setup, its designed for users who want to avoid additional database setup and are OK with the default database settings. The slow response times and problems with multiprocessing that are common with SQLite databases have been mitigated with the built-in cache system..
         /// </summary>
         public static string SQLite_Info {
             get {
@@ -11645,7 +11699,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SQL Server is meant for users with a large collection that exceeds over 200 series who also want the fastest performance possible. Out of the three available database types, SQL Server is considered the most difficult in setting up but can be setup with ease if you follow the guide we&apos;ve created..
+        ///   Looks up a localized string similar to SQL Server is an advanced database option that allows users to further fine-tune their database to achieve quicker response times. Most users will not benefit from installing SQL Server so we recommend using SQLite or MySQL..
         /// </summary>
         public static string SQLServer_Info {
             get {
@@ -13148,6 +13202,24 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preview TvDB Matches.
+        /// </summary>
+        public static string Tooltip_PreviewTvDB {
+            get {
+                return ResourceManager.GetString("Tooltip_PreviewTvDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View episodes/specials that are linked between AniDB &amp; TvDB..
+        /// </summary>
+        public static string Tooltip_PreviewTvDBInfo {
+            get {
+                return ResourceManager.GetString("Tooltip_PreviewTvDBInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Whenever you watch the final episode in a series, a prompt will appear to ask you for a rating.
         /// </summary>
         public static string Tooltip_PromptRateSeries {
@@ -13616,15 +13688,6 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Authorize Shoko.
-        /// </summary>
-        public static string Trakt_Authorize {
-            get {
-                return ResourceManager.GetString("Trakt_Authorize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Auto Download Episode Images.
         /// </summary>
         public static string Trakt_AutoEpisodeImages {
@@ -13670,6 +13733,15 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Device code.
+        /// </summary>
+        public static string Trakt_DeviceCode {
+            get {
+                return ResourceManager.GetString("Trakt_DeviceCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable Trakt.
         /// </summary>
         public static string Trakt_Enable {
@@ -13679,11 +13751,11 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get Pin.
+        ///   Looks up a localized string similar to Get code.
         /// </summary>
-        public static string Trakt_GetPIN {
+        public static string Trakt_GetCode {
             get {
-                return ResourceManager.GetString("Trakt_GetPIN", resourceCulture);
+                return ResourceManager.GetString("Trakt_GetCode", resourceCulture);
             }
         }
         
@@ -13702,15 +13774,6 @@ namespace Shoko.Commons.Properties {
         public static string Trakt_Password {
             get {
                 return ResourceManager.GetString("Trakt_Password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Trakt PIN.
-        /// </summary>
-        public static string Trakt_PIN {
-            get {
-                return ResourceManager.GetString("Trakt_PIN", resourceCulture);
             }
         }
         
