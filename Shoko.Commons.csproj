@@ -18,6 +18,9 @@
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net47'">
     <DefineConstants>NET47;NETFULL;PRILONGPATH</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Shoko.Models\**" />
     <EmbeddedResource Remove="Shoko.Models\**" />
