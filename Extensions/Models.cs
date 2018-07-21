@@ -432,7 +432,7 @@ namespace Shoko.Commons.Extensions
 
         public static List<int> GetImportFolderList(this Scan scan) => scan.ImportFolders.Split(',').Select(a => Int32.Parse(a)).ToList();
 
-        public static string GetTitleText(this Scan scan) => scan.CreationTIme.ToString(CultureInfo.CurrentUICulture) + " (" + scan.ImportFolders + ")";
+        public static string GetTitleText(this Scan scan) => scan.CreationTime.ToString(CultureInfo.CurrentUICulture) + " (" + scan.ImportFolders + ")";
         public static ScanFileStatus GetScanFileStatus(this ScanFile scanfile) => (ScanFileStatus) scanfile.Status;
 
         public static string GetStatusText(this ScanFile scanfile)
