@@ -429,20 +429,20 @@ namespace Shoko.Commons.Utils
         /// <param name="k">The maximum distance (in Levenshtein) to be allowed</param>
         /// <param name="dist">The Levenstein distance of the result. -1 if inapplicable</param>
         /// <returns></returns>
-        public static int BitapFuzzySearch32(string text, string pattern, int k, out int dist)
+        public static SearchInfo BitapFuzzySearch32(string text, string pattern, int k)
         {
             int result = -1;
             int m = pattern.Length;
             uint[] R;
             uint[] patternMask = new uint[128];
             int i, d;
-            dist = k + 1;
+            int dist = k + 1;
 
             // We are doing bitwise operations, this can be affected by how many bits the CPU is able to process
             const int WORD_SIZE = 31;
 
-            if (string.IsNullOrEmpty(pattern)) return -1;
-            if (m > WORD_SIZE) return -1; //Error: The pattern is too long!
+            if (string.IsNullOrEmpty(pattern)) return new SearchInfo {index = -1, distance = dist};
+            if (m > WORD_SIZE) return new SearchInfo {index = -1, distance = dist}; //Error: The pattern is too long!
 
             R = new uint[(k + 1) * sizeof(uint)];
             for (i = 0; i <= k; ++i)
@@ -477,23 +477,23 @@ namespace Shoko.Commons.Utils
                 }
             }
 
-            return result;
+            return new SearchInfo {index = result, distance = dist};
         }
 
-        public static int BitapFuzzySearch64(string inputString, string query, int k, out int dist)
+        public static SearchInfo BitapFuzzySearch64(string inputString, string query, int k)
         {
             int result = -1;
             int m = query.Length;
             ulong[] R;
             ulong[] patternMask = new ulong[128];
             int i, d;
-            dist = inputString.Length;
+            int dist = inputString.Length;
 
             // We are doing bitwise operations, this can be affected by how many bits the CPU is able to process
             const int WORD_SIZE = 63;
 
-            if (string.IsNullOrEmpty(query)) return -1;
-            if (m > WORD_SIZE) return -1; //Error: The pattern is too long!
+            if (string.IsNullOrEmpty(query)) return new SearchInfo {index = -1, distance = dist};
+            if (m > WORD_SIZE) return new SearchInfo {index = -1, distance = dist}; //Error: The pattern is too long!
 
             R = new ulong[(k + 1) * sizeof(ulong)];
             for (i = 0; i <= k; ++i)
@@ -528,15 +528,55 @@ namespace Shoko.Commons.Utils
                 }
             }
 
-            return result;
+            return new SearchInfo {index = result, distance = dist};
         }
 
-        public static int BitapFuzzySearch(string text, string pattern, int k, out int dist)
+        public class SearchInfo
+        {
+            public int index { get; set; }
+            public int distance { get; set; }
+            public bool exact_match { get; set; }
+
+            protected bool Equals(SearchInfo other)
+            {
+                return index == other.index && distance == other.distance && exact_match == other.exact_match;
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (ReferenceEquals(null, obj)) return false;
+                if (ReferenceEquals(this, obj)) return true;
+                if (obj.GetType() != this.GetType()) return false;
+                return Equals((SearchInfo) obj);
+            }
+
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    var hashCode = index;
+                    hashCode = (hashCode * 397) ^ distance;
+                    hashCode = (hashCode * 397) ^ exact_match.GetHashCode();
+                    return hashCode;
+                }
+            }
+
+            public static bool operator ==(SearchInfo left, SearchInfo right)
+            {
+                return Equals(left, right);
+            }
+
+            public static bool operator !=(SearchInfo left, SearchInfo right)
+            {
+                return !Equals(left, right);
+            }
+        }
+
+        public static SearchInfo BitapFuzzySearch(string text, string pattern, int k)
         {
             if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(pattern))
             {
-                dist = int.MaxValue;
-                return -1;
+                return new SearchInfo {index = -1, distance = int.MaxValue};
             }
             // This forces ASCII, because it's faster to stop caring if ss and ß are the same
             // No it's not perfect, but it works better for those who just want to do lazy searching
@@ -552,8 +592,17 @@ namespace Shoko.Commons.Utils
 
             if (string.IsNullOrEmpty(query) || string.IsNullOrEmpty(inputString))
             {
-                dist = text.Length;
-                return -1;
+                return new SearchInfo {index = -1, distance = int.MaxValue};
+            }
+
+            int index = inputString.IndexOf(query, StringComparison.Ordinal);
+            // Shortcut
+            if (index > -1)
+            {
+                // they are equal if the lengths are equal and one contains the other
+                int dist = Math.Abs(inputString.Length - query.Length);
+
+                return new SearchInfo {index = index, distance = dist, exact_match = true};
             }
 
             // always search the longer string for the shorter one
@@ -564,18 +613,9 @@ namespace Shoko.Commons.Utils
                 inputString = temp;
             }
 
-            // Shortcut
-            if (inputString.Contains(query))
-            {
-                dist = int.MinValue;
-                return 0;
-            }
-
-            if (IntPtr.Size > 4)
-            {
-                return BitapFuzzySearch64(inputString, query, k, out dist);
-            }
-            return BitapFuzzySearch32(inputString, query, k, out dist);
+            return IntPtr.Size > 4
+                ? BitapFuzzySearch64(inputString, query, k)
+                : BitapFuzzySearch32(inputString, query, k);
         }
 
         public static bool FuzzyMatches(this string text, string query)
@@ -583,8 +623,9 @@ namespace Shoko.Commons.Utils
             if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(query)) return false;
             int k = Math.Max(Math.Min((int)(text.Length / 6D), (int)(query.Length / 6D)), 1);
             if (query.Length <= 4 || text.Length <= 4) k = 0;
-            return BitapFuzzySearch(text, query, k, out int _) > -1;
+            return BitapFuzzySearch(text, query, k).index > -1;
         }
+
         private static readonly SecurityIdentifier _everyone = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
         public static List<string> RecursiveGetDirectoriesWithoutEveryonePermission(string path)
         {
