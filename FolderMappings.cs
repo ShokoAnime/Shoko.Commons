@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+#if PRILONGPATH
 using Pri.LongPath;
+#else
+using System.IO;
+#endif
 using Shoko.Models.Server;
 
 namespace Shoko.Commons

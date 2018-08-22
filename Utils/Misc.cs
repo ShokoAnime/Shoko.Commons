@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
@@ -15,7 +14,18 @@ using Shoko.Commons.Extensions;
 using Shoko.Models.Client;
 using Shoko.Models.Enums;
 using Shoko.Models.Server;
-using DirectoryInfo = Pri.LongPath.DirectoryInfo;
+#if PRILONGPATH
+using Pri.LongPath;
+using Stream = System.IO.Stream;
+using StreamReader = System.IO.StreamReader;
+using StreamWriter = System.IO.StreamWriter;
+using FileStream = System.IO.FileStream;
+using FileMode = System.IO.FileMode;
+using FileAccess = System.IO.FileAccess;
+#else
+using System.IO;
+#endif
+
 
 namespace Shoko.Commons.Utils
 {
@@ -620,7 +630,7 @@ namespace Shoko.Commons.Utils
         public static List<string> RecursiveGetDirectoriesWithoutEveryonePermission(string path)
         {
             List<string> dirs=new List<string>();
-            if (!Pri.LongPath.Directory.Exists(path))
+            if (!Directory.Exists(path))
                 return dirs;
             DirectoryInfo info=new DirectoryInfo(path);
             AuthorizationRuleCollection coll = info.GetAccessControl().GetAccessRules(true, true, typeof(SecurityIdentifier));
@@ -688,7 +698,7 @@ namespace Shoko.Commons.Utils
                 if (exitCode == 0)
                     return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Ignored
             }

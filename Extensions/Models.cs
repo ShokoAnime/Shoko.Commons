@@ -5,7 +5,11 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+#if PRILONGPATH
 using Pri.LongPath;
+#else
+using System.IO;
+#endif
 using Shoko.Commons.Languages;
 using Shoko.Commons.Properties;
 using Shoko.Commons.Utils;
@@ -28,7 +32,7 @@ namespace Shoko.Commons.Extensions
 
         public static List<T> CastList<T>(this IEnumerable<dynamic> list) => list?.Cast<T>().ToList();
 
-        public static DateTime GetMessageDateAsDate(this Azure_AdminMessage message) => TimeZone.CurrentTimeZone.ToLocalTime(AniDB.GetAniDBDateAsDate((int) message.MessageDate).Value);
+        public static DateTime GetMessageDateAsDate(this Azure_AdminMessage message) => TimeZoneInfo.ConvertTimeFromUtc(AniDB.GetAniDBDateAsDate((int) message.MessageDate).Value,TimeZoneInfo.Local);
 
 
         public static string ToStringEx(this Azure_AdminMessage message) => $"{message.AdminMessageId} - {message.GetMessageDateAsDate()} - {message.Message}";
@@ -428,7 +432,7 @@ namespace Shoko.Commons.Extensions
 
         public static List<int> GetImportFolderList(this Scan scan) => scan.ImportFolders.Split(',').Select(a => Int32.Parse(a)).ToList();
 
-        public static string GetTitleText(this Scan scan) => scan.CreationTIme.ToString(CultureInfo.CurrentUICulture) + " (" + scan.ImportFolders + ")";
+        public static string GetTitleText(this Scan scan) => scan.CreationTime.ToString(CultureInfo.CurrentUICulture) + " (" + scan.ImportFolders + ")";
         public static ScanFileStatus GetScanFileStatus(this ScanFile scanfile) => (ScanFileStatus) scanfile.Status;
 
         public static string GetStatusText(this ScanFile scanfile)
