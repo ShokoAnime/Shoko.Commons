@@ -5181,7 +5181,7 @@ You can have as many Drop Sources as you want, however you must setup a Drop Des
     <value>Getting File Status from MyList: {0} ({1})</value>
   </data>
   <data name="Command_ValidateAllImages" xml:space="preserve">
-    <value>Validating Images{0}</value>
+    <value>Validating Images with AnimeID: {0}</value>
   </data>
   <data name="Command_ValidateAllImages_TvDBEpisodes" xml:space="preserve">
     <value> - TvDB Episodes</value>
@@ -5270,5 +5270,8 @@ Please link to plex via Desktop under settings -&gt;users to use this.</value>
   </data>
   <data name="LinkPlex" xml:space="preserve">
     <value>Please link your plex under users if you wish to use this.</value>
+  </data>
+  <data name="Command_DownloadAniDBImages" xml:space="preserve">
+    <value>Downloading AniDB Images with id {0}</value>
   </data>
 </root>

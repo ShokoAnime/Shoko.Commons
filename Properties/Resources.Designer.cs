@@ -1906,6 +1906,15 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloading AniDB Images with id {0}.
+        /// </summary>
+        public static string Command_DownloadAniDBImages {
+            get {
+                return ResourceManager.GetString("Command_DownloadAniDBImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Downloading Image{0}: {1}.
         /// </summary>
         public static string Command_DownloadImage {
@@ -2320,7 +2329,7 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Validating Images{0}.
+        ///   Looks up a localized string similar to Validating Images with AnimeID: {0}.
         /// </summary>
         public static string Command_ValidateAllImages {
             get {

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
@@ -34,5 +34,36 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Shoko.Models\Shoko.Models.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.de.resx" Generator="PublicResXFileCodeGenerator" LastGenOutput="Resources.de.Designer.cs" />
+    <Compile Update="Properties\Resources.de.Designer.cs" AutoGen="True" DependentUpon="Resources.de.resx" DesignTime="True" />
+
+    <EmbeddedResource Update="Properties\Resources.en-gb.resx" Generator="PublicResXFileCodeGenerator" LastGenOutput="Resources.en-gb.Designer.cs" />
+    <Compile Update="Properties\Resources.en-gb.Designer.cs" AutoGen="True" DependentUpon="Resources.en-gb.resx" DesignTime="True" />
+  
+    <EmbeddedResource Update="Properties\Resources.es.resx" Generator="PublicResXFileCodeGenerator" LastGenOutput="Resources.es.Designer.cs" />
+    <Compile Update="Properties\Resources.es.Designer.cs" AutoGen="True" DependentUpon="Resources.es.resx" DesignTime="True" />
+
+    <EmbeddedResource Update="Properties\Resources.fr.resx" Generator="PublicResXFileCodeGenerator" LastGenOutput="Resources.fr.Designer.cs" />
+    <Compile Update="Properties\Resources.fr.Designer.cs" AutoGen="True" DependentUpon="Resources.fr.resx" DesignTime="True" />
+
+    <EmbeddedResource Update="Properties\Resources.it.resx" Generator="PublicResXFileCodeGenerator" LastGenOutput="Resources.it.Designer.cs" />
+    <Compile Update="Properties\Resources.it.Designer.cs" AutoGen="True" DependentUpon="Resources.it.resx" DesignTime="True" />
+
+    <EmbeddedResource Update="Properties\Resources.nl.resx" Generator="PublicResXFileCodeGenerator" LastGenOutput="Resources.nl.Designer.cs" />
+    <Compile Update="Properties\Resources.nl.Designer.cs" AutoGen="True" DependentUpon="Resources.nl.resx" DesignTime="True" />
+
+    <EmbeddedResource Update="Properties\Resources.pl.resx" Generator="PublicResXFileCodeGenerator" LastGenOutput="Resources.pl.Designer.cs" />
+    <Compile Update="Properties\Resources.pl.Designer.cs" AutoGen="True" DependentUpon="Resources.pl.resx" DesignTime="True" />
+
+    <EmbeddedResource Update="Properties\Resources.pt.resx" Generator="PublicResXFileCodeGenerator" LastGenOutput="Resources.pt.Designer.cs" />
+    <Compile Update="Properties\Resources.pt.Designer.cs" AutoGen="True" DependentUpon="Resources.pt.resx" DesignTime="True" />
+
+    <EmbeddedResource Update="Properties\Resources.ru.resx" Generator="PublicResXFileCodeGenerator" LastGenOutput="Resources.ru.Designer.cs" />
+    <Compile Update="Properties\Resources.ru.Designer.cs" AutoGen="True" DependentUpon="Resources.ru.resx" DesignTime="True" />
+
+    <EmbeddedResource Update="Properties\Resources.resx" Generator="PublicResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
+    <Compile Update="Properties\Resources.Designer.cs" AutoGen="True" DependentUpon="Resources.resx" DesignTime="True" />
   </ItemGroup>
 </Project>
