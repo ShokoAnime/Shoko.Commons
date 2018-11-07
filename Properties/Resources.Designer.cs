@@ -11807,6 +11807,15 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Synchronizing Hashes.
+        /// </summary>
+        public static string SyncHashes {
+            get {
+                return ResourceManager.GetString("SyncHashes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download Watched States from MAL.
         /// </summary>
         public static string SyncMalDown {

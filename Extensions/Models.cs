@@ -13,11 +13,11 @@ using System.IO;
 using Shoko.Commons.Languages;
 using Shoko.Commons.Properties;
 using Shoko.Commons.Utils;
-using Shoko.Models.Azure;
 using Shoko.Models.Client;
 using Shoko.Models.Enums;
 using Shoko.Models.Server;
 using Shoko.Models.TvDB;
+using Shoko.Models.WebCache;
 
 namespace Shoko.Commons.Extensions
 {
@@ -32,10 +32,10 @@ namespace Shoko.Commons.Extensions
 
         public static List<T> CastList<T>(this IEnumerable<dynamic> list) => list?.Cast<T>().ToList();
 
-        public static DateTime GetMessageDateAsDate(this Azure_AdminMessage message) => TimeZoneInfo.ConvertTimeFromUtc(AniDB.GetAniDBDateAsDate((int) message.MessageDate).Value,TimeZoneInfo.Local);
+        public static DateTime GetMessageDateAsDate(this WebCache_AdminMessage message) => TimeZoneInfo.ConvertTimeFromUtc(AniDB.GetAniDBDateAsDate((int) message.MessageDate).Value,TimeZoneInfo.Local);
 
 
-        public static string ToStringEx(this Azure_AdminMessage message) => $"{message.AdminMessageId} - {message.GetMessageDateAsDate()} - {message.Message}";
+        public static string ToStringEx(this WebCache_AdminMessage message) => $"{message.AdminMessageId} - {message.GetMessageDateAsDate()} - {message.Message}";
 
         public static double GetApprovalPercentage(this AniDB_Anime_Similar similar)
         {
@@ -1219,7 +1219,7 @@ namespace Shoko.Commons.Extensions
 
         public static bool IsFolderWatched(this ImportFolder ImportFolder) => ImportFolder.IsWatched == 1;
 
-        public static bool HasMessageURL(this Azure_AdminMessage msg) => !String.IsNullOrEmpty(msg.MessageURL);
+        public static bool HasMessageURL(this WebCache_AdminMessage msg) => !String.IsNullOrEmpty(msg.MessageURL);
 
         public static bool HasMissingEpisodesAny(this AnimeGroup grp) => grp.MissingEpisodeCount > 0 || grp.MissingEpisodeCountGroups > 0;
 

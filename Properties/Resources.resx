@@ -5274,4 +5274,7 @@ Please link to plex via Desktop under settings -&gt;users to use this.</value>
   <data name="Command_DownloadAniDBImages" xml:space="preserve">
     <value>Downloading AniDB Images with id {0}</value>
   </data>
+  <data name="SyncHashes" xml:space="preserve">
+    <value>Synchronizing Hashes</value>
+  </data>
 </root>

@@ -7,17 +7,17 @@ using Shoko.Models.Queue;
 namespace Shoko.Commons.Queue
 {
 
-    public struct QueueStateStruct
+    public class QueueStateStruct
     {
-        public QueueStateEnum queueState;
-        public string[] extraParams;
-        public string formatMessage()
+        public QueueStateEnum QueueState;
+        public string[] ExtraParams;
+        public string FormatMessage()
         {
-            string formatString = getFormatString(queueState);
+            string formatString = GetFormatString(QueueState);
             // ReSharper disable once CoVariantArrayConversion
-            return string.Format(formatString, extraParams);
+            return string.Format(formatString, ExtraParams);
         }
-        private string getFormatString(QueueStateEnum id)
+        private string GetFormatString(QueueStateEnum id)
         {
             switch (id)
             {
@@ -153,6 +153,8 @@ namespace Shoko.Commons.Queue
                     return Resources.Command_WebCacheSendXRefAniDBTvDB;
                 case QueueStateEnum.WebCacheSendXRefFileEpisode:
                     return Resources.Command_WebCacheSendXRefFileEpisode;
+                case QueueStateEnum.SyncHashes:
+                    return Resources.SyncHashes;
                 default:
                     throw new Exception("Unknown queue state format string");
             }

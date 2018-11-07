@@ -65,7 +65,29 @@ namespace Shoko.Commons.Notification
                     cls.OnPropertyChanged(props);
             }
         }
-
+        public static void SetFieldForced<T>(this INotifyPropertyChangedExt cls, Expression<Func<object>> property, T value, params Expression<Func<object>>[] props)
+        {
+            var expr = Resolve(property);
+            T original;
+            bool changed;
+            if (expr.Member is FieldInfo)
+            {
+                original = (T)((FieldInfo)expr.Member).GetValue(cls);
+                changed = !EqualityComparer<T>.Default.Equals(original, value);
+                if (changed)
+                    ((FieldInfo)expr.Member).SetValue(cls, value);
+            }
+            else if (expr.Member is PropertyInfo)
+            {
+                original = (T)((PropertyInfo)expr.Member).GetValue(cls);
+                changed = !EqualityComparer<T>.Default.Equals(original, value);
+                if (changed)
+                    ((PropertyInfo)expr.Member).SetValue(cls, value);
+            }
+            cls.OnPropertyChanged(property);
+            if (props != null && props.Length > 0)
+                cls.OnPropertyChanged(props);
+        }
         private static MemberExpression Resolve(Expression<Func<object>> expr)
         {
             var member = expr.Body as MemberExpression;
