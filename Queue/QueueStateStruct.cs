@@ -155,6 +155,8 @@ namespace Shoko.Commons.Queue
                     return Resources.Command_WebCacheSendXRefFileEpisode;
                 case QueueStateEnum.SyncHashes:
                     return Resources.SyncHashes;
+                case QueueStateEnum.VerifyFile:
+                    return Resources.VerifyingFile;
                 default:
                     throw new Exception("Unknown queue state format string");
             }

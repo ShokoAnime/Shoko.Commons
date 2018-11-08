@@ -5277,4 +5277,10 @@ Please link to plex via Desktop under settings -&gt;users to use this.</value>
   <data name="SyncHashes" xml:space="preserve">
     <value>Synchronizing Hashes</value>
   </data>
+  <data name="VerifyingFile" xml:space="preserve">
+    <value>Verifying File {0}</value>
+  </data>
+  <data name="PyshicalTag" xml:space="preserve">
+    <value>Physical Tag</value>
+  </data>
 </root>

@@ -88,7 +88,7 @@ namespace Shoko.Commons.Notification
             if (props != null && props.Length > 0)
                 cls.OnPropertyChanged(props);
         }
-        private static MemberExpression Resolve(Expression<Func<object>> expr)
+        public static MemberExpression Resolve(Expression<Func<object>> expr)
         {
             var member = expr.Body as MemberExpression;
             if (member == null)

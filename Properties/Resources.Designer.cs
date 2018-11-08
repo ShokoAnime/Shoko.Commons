@@ -8684,6 +8684,15 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Physical Tag.
+        /// </summary>
+        public static string PyshicalTag {
+            get {
+                return ResourceManager.GetString("PyshicalTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AniDB Queue.
         /// </summary>
         public static string QueueGeneral {
@@ -14800,6 +14809,15 @@ namespace Shoko.Commons.Properties {
         public static string ValueCompare_PropertyName {
             get {
                 return ResourceManager.GetString("ValueCompare_PropertyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verifying File {0}.
+        /// </summary>
+        public static string VerifyingFile {
+            get {
+                return ResourceManager.GetString("VerifyingFile", resourceCulture);
             }
         }
         
