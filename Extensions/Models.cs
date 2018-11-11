@@ -1053,9 +1053,7 @@ namespace Shoko.Commons.Extensions
 
 
 
-        public static string GetSiteURL(this CrossRef_AniDB_MAL crossanidb) => String.Format(Shoko.Models.Constants.URLS.MAL_Series, crossanidb.MALID);
-        public static string GetStartEpisodeTypeString(this CrossRef_AniDB_MAL crossanidb) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crossanidb.StartEpisodeType);
-
+        
         public static string GetSiteURL(this CL_MovieDBMovieSearch_Response sresult) => String.Format(Shoko.Models.Constants.URLS.MovieDB_Series, sresult.MovieID);
 
         public static bool HasAnySpecials(this CL_GroupVideoQuality vidquality) => vidquality.FileCountSpecials > 0;
