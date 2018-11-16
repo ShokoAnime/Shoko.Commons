@@ -16,6 +16,7 @@ using Shoko.Commons.Utils;
 using Shoko.Models.Client;
 using Shoko.Models.Enums;
 using Shoko.Models.Server;
+using Shoko.Models.Server.CrossRef;
 using Shoko.Models.TvDB;
 using Shoko.Models.WebCache;
 
@@ -1141,19 +1142,21 @@ namespace Shoko.Commons.Extensions
         }
 
         public static string GetSiteURL(this MovieDB_Movie movie) => String.Format(Shoko.Models.Constants.URLS.MovieDB_Series, movie.MovieId);
-        public static string GetSeriesURL(this CrossRef_AniDB_TvDBV2 crosstvdb) => String.Format(Shoko.Models.Constants.URLS.TvDB_Series, crosstvdb.TvDBID);
-        public static string GetAniDBURL(this CrossRef_AniDB_TvDBV2 crosstvdb) => String.Format(Shoko.Models.Constants.URLS.AniDB_Series, crosstvdb.AnimeID);
+        public static string GetSeriesURL(this CrossRef_AniDB_Provider crosstvdb) => String.Format(Shoko.Models.Constants.URLS.TvDB_Series, crosstvdb.CrossRefID);
+        public static string GetAniDBURL(this CrossRef_AniDB_Provider crosstvdb) => String.Format(Shoko.Models.Constants.URLS.AniDB_Series, crosstvdb.AnimeID);
+        /*
         public static string GetAniDBStartEpisodeTypeString(this CrossRef_AniDB_TvDBV2 crosstvdb) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crosstvdb.AniDBStartEpisodeType);
         public static string GetAniDBStartEpisodeNumberString(this CrossRef_AniDB_TvDBV2 crosstvdb) => $"# {crosstvdb.AniDBStartEpisodeNumber}";
         public static string GetTvDBSeasonNumberString(this CrossRef_AniDB_TvDBV2 crosstvdb) => $"S{crosstvdb.TvDBSeasonNumber}";
         public static string GetTvDBStartEpisodeNumberString(this CrossRef_AniDB_TvDBV2 crosstvdb) => $"EP# {crosstvdb.TvDBStartEpisodeNumber}";
-        public static string GetShowURL(this CrossRef_AniDB_TraktV2 crosstrakt) => String.Format(Shoko.Models.Constants.URLS.Trakt_Series, crosstrakt.TraktID);
-        public static string GetAniDBURL(this CrossRef_AniDB_TraktV2 crosstrakt) => String.Format(Shoko.Models.Constants.URLS.AniDB_Series, crosstrakt.AnimeID);
+        */
+        public static string GetShowURL(this CrossRef_AniDB_Provider crosstrakt) => String.Format(Shoko.Models.Constants.URLS.Trakt_Series, crosstrakt.CrossRefID);
+        /*
         public static string GetAniDBStartEpisodeTypeString(this CrossRef_AniDB_TraktV2 crosstrakt) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crosstrakt.AniDBStartEpisodeType);
         public static string GetAniDBStartEpisodeNumberString(this CrossRef_AniDB_TraktV2 crosstrakt) => $"# {crosstrakt.AniDBStartEpisodeNumber}";
         public static string GetTraktSeasonNumberString(this CrossRef_AniDB_TraktV2 crosstrakt) => $"S{crosstrakt.TraktSeasonNumber}";
         public static string GetTraktStartEpisodeNumberString(this CrossRef_AniDB_TraktV2 crosstrakt) => $"EP# {crosstrakt.TraktStartEpisodeNumber}";
-
+        */
         public static string EpisodeTypeTranslated(this EpisodeType epType)
         {
             switch (epType)
@@ -1199,7 +1202,21 @@ namespace Shoko.Commons.Extensions
                 return 2;
             return Int32.MaxValue;
         }
-
+        public static List<CrossRef_AniDB_ProviderEpisode> GetEpisodesWithOverrides(this CL_CrossRef_AniDB_Provider cr)
+        {
+            List<CrossRef_AniDB_ProviderEpisode> orig = cr.Episodes;
+            foreach (CrossRef_AniDB_ProviderEpisode c in cr.EpisodesOverride)
+            {
+                CrossRef_AniDB_ProviderEpisode cd = cr.Episodes.FirstOrDefault(a=>a.AniDBEpisodeID==c.AniDBEpisodeID);
+                if (cd != null && orig.Contains(cd))
+                    orig.Remove(cd);
+                cd = cr.Episodes.FirstOrDefault(a=>a.ProviderEpisodeID==c.ProviderEpisodeID);
+                if (cd != null && orig.Contains(cd))
+                    orig.Remove(cd);
+            }
+            orig.AddRange(cr.EpisodesOverride);
+            return orig.OrderBy(a => a.AniDBEpisodeID).ToList();
+        }
 
 
         public static bool IsAdminUser(this JMMUser JMMUser) => JMMUser.IsAdmin == 1;
