@@ -2050,6 +2050,15 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Updating Changed Trakt association: {0}.
+        /// </summary>
+        public static string Command_LinkAniDBTrakt {
+            get {
+                return ResourceManager.GetString("Command_LinkAniDBTrakt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Updating Changed TvDB association: {0}.
         /// </summary>
         public static string Command_LinkAniDBTvDB {

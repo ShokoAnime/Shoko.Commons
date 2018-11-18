@@ -5283,4 +5283,7 @@ Please link to plex via Desktop under settings -&gt;users to use this.</value>
   <data name="PyshicalTag" xml:space="preserve">
     <value>Physical Tag</value>
   </data>
+  <data name="Command_LinkAniDBTrakt" xml:space="preserve">
+    <value>Updating Changed Trakt association: {0}</value>
+  </data>
 </root>

@@ -69,6 +69,8 @@ namespace Shoko.Commons.Queue
                     return Resources.Command_Idle;
                 case QueueStateEnum.LinkAniDBTvDB:
                     return Resources.Command_LinkAniDBTvDB;
+                case QueueStateEnum.LinkAniDBTrakt:
+                    return Resources.Command_LinkAniDBTrakt;
                 case QueueStateEnum.LinkFileManually:
                     return Resources.Command_LinkFileManually;
                 case QueueStateEnum.Paused:
