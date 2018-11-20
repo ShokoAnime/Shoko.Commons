@@ -626,9 +626,9 @@ namespace Shoko.Commons.Utils
             return BitapFuzzySearch(text, query, k).index > -1;
         }
 
-        private static readonly SecurityIdentifier _everyone = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
         public static List<string> RecursiveGetDirectoriesWithoutEveryonePermission(string path)
         {
+            SecurityIdentifier _everyone = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
             List<string> dirs=new List<string>();
             if (!Directory.Exists(path))
                 return dirs;
