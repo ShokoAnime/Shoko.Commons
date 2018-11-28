@@ -159,6 +159,30 @@ namespace Shoko.Commons.Queue
                     return Resources.SyncHashes;
                 case QueueStateEnum.VerifyFile:
                     return Resources.VerifyingFile;
+                case QueueStateEnum.LogRotation:
+                    return Resources.Command_LogRotation;
+                case QueueStateEnum.Import:
+                    return Resources.Command_Import;
+                case QueueStateEnum.ScanFolder:
+                    return Resources.Command_ScanFolder;
+                case QueueStateEnum.ScanDropFolders:
+                    return Resources.Command_ScanDropFolder;
+                case QueueStateEnum.RemoveMissingFiles:
+                    return Resources.Command_RemoveMissingFiles;
+                case QueueStateEnum.DeleteFolder:
+                    return Resources.Command_DeleteFolder;
+                case QueueStateEnum.RefreshAllMediaInfo:
+                    return Resources.Command_RefreshAllMediaInfo;
+                case QueueStateEnum.SyncMediaInfos:
+                    return Resources.Command_SyncMediaInfo;
+                case QueueStateEnum.GetImages:
+                    return Resources.Command_GetImages;
+                case QueueStateEnum.Update:
+                    return Resources.Command_Update;
+                case QueueStateEnum.ShortUpdate:
+                    return Resources.Command_ShortUpdate;
+
+
                 default:
                     throw new Exception("Unknown queue state format string");
             }

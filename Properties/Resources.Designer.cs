@@ -1906,6 +1906,15 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deleting Import Folder {0}.
+        /// </summary>
+        public static string Command_DeleteFolder {
+            get {
+                return ResourceManager.GetString("Command_DeleteFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Downloading AniDB Images with id {0}.
         /// </summary>
         public static string Command_DownloadAniDBImages {
@@ -1974,6 +1983,15 @@ namespace Shoko.Commons.Properties {
         public static string Command_GetFileInfo {
             get {
                 return ResourceManager.GetString("Command_GetFileInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting Images.
+        /// </summary>
+        public static string Command_GetImages {
+            get {
+                return ResourceManager.GetString("Command_GetImages", resourceCulture);
             }
         }
         
@@ -2050,6 +2068,15 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Importing Files.
+        /// </summary>
+        public static string Command_Import {
+            get {
+                return ResourceManager.GetString("Command_Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Updating Changed Trakt association: {0}.
         /// </summary>
         public static string Command_LinkAniDBTrakt {
@@ -2073,6 +2100,15 @@ namespace Shoko.Commons.Properties {
         public static string Command_LinkFileManually {
             get {
                 return ResourceManager.GetString("Command_LinkFileManually", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotating Logs.
+        /// </summary>
+        public static string Command_LogRotation {
+            get {
+                return ResourceManager.GetString("Command_LogRotation", resourceCulture);
             }
         }
         
@@ -2113,11 +2149,47 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh All Media Information.
+        /// </summary>
+        public static string Command_RefreshAllMediaInfo {
+            get {
+                return ResourceManager.GetString("Command_RefreshAllMediaInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refreshing Group Filter: {0}.
         /// </summary>
         public static string Command_RefreshGroupFilter {
             get {
                 return ResourceManager.GetString("Command_RefreshGroupFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removing MIssing Files from Database.
+        /// </summary>
+        public static string Command_RemoveMissingFiles {
+            get {
+                return ResourceManager.GetString("Command_RemoveMissingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scanning Drop Folders.
+        /// </summary>
+        public static string Command_ScanDropFolder {
+            get {
+                return ResourceManager.GetString("Command_ScanDropFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scanning Folder {0}.
+        /// </summary>
+        public static string Command_ScanFolder {
+            get {
+                return ResourceManager.GetString("Command_ScanFolder", resourceCulture);
             }
         }
         
@@ -2194,6 +2266,15 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Short Update....
+        /// </summary>
+        public static string Command_ShortUpdate {
+            get {
+                return ResourceManager.GetString("Command_ShortUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Starting general command worker.
         /// </summary>
         public static string Command_StartingGeneral {
@@ -2217,6 +2298,15 @@ namespace Shoko.Commons.Properties {
         public static string Command_StartingImages {
             get {
                 return ResourceManager.GetString("Command_StartingImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synchronizing Media Information.
+        /// </summary>
+        public static string Command_SyncMediaInfo {
+            get {
+                return ResourceManager.GetString("Command_SyncMediaInfo", resourceCulture);
             }
         }
         
@@ -2280,6 +2370,15 @@ namespace Shoko.Commons.Properties {
         public static string Command_TraktAddHistory {
             get {
                 return ResourceManager.GetString("Command_TraktAddHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating....
+        /// </summary>
+        public static string Command_Update {
+            get {
+                return ResourceManager.GetString("Command_Update", resourceCulture);
             }
         }
         

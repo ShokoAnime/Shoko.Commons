@@ -5286,4 +5286,37 @@ Please link to plex via Desktop under settings -&gt;users to use this.</value>
   <data name="Command_LinkAniDBTrakt" xml:space="preserve">
     <value>Updating Changed Trakt association: {0}</value>
   </data>
+  <data name="Command_DeleteFolder" xml:space="preserve">
+    <value>Deleting Import Folder {0}</value>
+  </data>
+  <data name="Command_GetImages" xml:space="preserve">
+    <value>Getting Images</value>
+  </data>
+  <data name="Command_Import" xml:space="preserve">
+    <value>Importing Files</value>
+  </data>
+  <data name="Command_LogRotation" xml:space="preserve">
+    <value>Rotating Logs</value>
+  </data>
+  <data name="Command_RefreshAllMediaInfo" xml:space="preserve">
+    <value>Refresh All Media Information</value>
+  </data>
+  <data name="Command_RemoveMissingFiles" xml:space="preserve">
+    <value>Removing MIssing Files from Database</value>
+  </data>
+  <data name="Command_ScanDropFolder" xml:space="preserve">
+    <value>Scanning Drop Folders</value>
+  </data>
+  <data name="Command_ScanFolder" xml:space="preserve">
+    <value>Scanning Folder {0}</value>
+  </data>
+  <data name="Command_ShortUpdate" xml:space="preserve">
+    <value>Short Update...</value>
+  </data>
+  <data name="Command_SyncMediaInfo" xml:space="preserve">
+    <value>Synchronizing Media Information</value>
+  </data>
+  <data name="Command_Update" xml:space="preserve">
+    <value>Updating...</value>
+  </data>
 </root>
