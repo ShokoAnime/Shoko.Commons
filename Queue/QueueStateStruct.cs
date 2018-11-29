@@ -181,8 +181,8 @@ namespace Shoko.Commons.Queue
                     return Resources.Command_Update;
                 case QueueStateEnum.ShortUpdate:
                     return Resources.Command_ShortUpdate;
-
-
+                case QueueStateEnum.FileWatch:
+                    return Resources.Command_FileWatch;
                 default:
                     throw new Exception("Unknown queue state format string");
             }

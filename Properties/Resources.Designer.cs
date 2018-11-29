@@ -1960,6 +1960,15 @@ namespace Shoko.Commons.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Files Found {0} in {1}.
+        /// </summary>
+        public static string Command_FileWatch {
+            get {
+                return ResourceManager.GetString("Command_FileWatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Getting calendar info from UDP API.
         /// </summary>
         public static string Command_GetCalendar {

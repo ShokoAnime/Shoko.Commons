@@ -5319,4 +5319,7 @@ Please link to plex via Desktop under settings -&gt;users to use this.</value>
   <data name="Command_Update" xml:space="preserve">
     <value>Updating...</value>
   </data>
+  <data name="Command_FileWatch" xml:space="preserve">
+    <value>Files Found {0} in {1}</value>
+  </data>
 </root>
