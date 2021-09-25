@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.Contracts;
 using Shoko.Commons.Properties;
 using Shoko.Models.Queue;
@@ -139,25 +139,29 @@ namespace Shoko.Commons.Queue
                 case QueueStateEnum.VoteAnime:
                     return Resources.Command_VoteAnime;
                 case QueueStateEnum.WebCacheDeleteXRefAniDBMAL:
-                    return Resources.Command_WebCacheDeleteXRefAniDBMAL;
+                    return Resources.Command_WebCacheDeleteXRefAniDB;
                 case QueueStateEnum.WebCacheDeleteXRefAniDBOther:
-                    return Resources.Command_WebCacheDeleteXRefAniDBOther;
+                    return Resources.Command_WebCacheDeleteXRefAniDB;
                 case QueueStateEnum.WebCacheDeleteXRefAniDBTrakt:
-                    return Resources.Command_WebCacheDeleteXRefAniDBTrakt;
+                    return Resources.Command_WebCacheDeleteXRefAniDB;
                 case QueueStateEnum.WebCacheDeleteXRefAniDBTvDB:
-                    return Resources.Command_WebCacheDeleteXRefAniDBTvDB;
+                    return Resources.Command_WebCacheDeleteXRefAniDB;
                 case QueueStateEnum.WebCacheDeleteXRefFileEpisode:
                     return Resources.Command_WebCacheDeleteXRefFileEpisode;
                 case QueueStateEnum.WebCacheSendXRefAniDBMAL:
-                    return Resources.Command_WebCacheSendXRefAniDBMAL;
+                    return Resources.Command_WebCacheSendXRefAniDB;
                 case QueueStateEnum.WebCacheSendXRefAniDBOther:
-                    return Resources.Command_WebCacheSendXRefAniDBOther;
+                    return Resources.Command_WebCacheSendXRefAniDB;
                 case QueueStateEnum.WebCacheSendXRefAniDBTrakt:
-                    return Resources.Command_WebCacheSendXRefAniDBTrakt;
+                    return Resources.Command_WebCacheSendXRefAniDB;
                 case QueueStateEnum.WebCacheSendXRefAniDBTvDB:
-                    return Resources.Command_WebCacheSendXRefAniDBTvDB;
+                    return Resources.Command_WebCacheSendXRefAniDB;
                 case QueueStateEnum.WebCacheSendXRefFileEpisode:
                     return Resources.Command_WebCacheSendXRefFileEpisode;
+                case QueueStateEnum.WebCacheDeleteXRefAniDB:
+                    return Resources.Command_WebCacheDeleteXRefAniDB;
+                case QueueStateEnum.WebCacheSendXRefAniDB:
+                    return Resources.Command_WebCacheSendXRefAniDB;
                 default:
                     throw new Exception("Unknown queue state format string");
             }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -1053,8 +1053,7 @@ namespace Shoko.Commons.Extensions
 
 
 
-        public static string GetSiteURL(this CrossRef_AniDB_MAL crossanidb) => String.Format(Shoko.Models.Constants.URLS.MAL_Series, crossanidb.MALID);
-        public static string GetStartEpisodeTypeString(this CrossRef_AniDB_MAL crossanidb) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crossanidb.StartEpisodeType);
+        public static string GetSiteURL(this CrossRef_AniDB crossanidb) => crossanidb.Provider==Shoko.Models.Constants.Providers.MAL ? String.Format(Shoko.Models.Constants.URLS.MAL_Series, crossanidb.ProviderID) : "";
 
         public static string GetSiteURL(this CL_MovieDBMovieSearch_Response sresult) => String.Format(Shoko.Models.Constants.URLS.MovieDB_Series, sresult.MovieID);
 
@@ -1143,19 +1142,14 @@ namespace Shoko.Commons.Extensions
         }
 
         public static string GetSiteURL(this MovieDB_Movie movie) => String.Format(Shoko.Models.Constants.URLS.MovieDB_Series, movie.MovieId);
-        public static string GetSeriesURL(this CrossRef_AniDB_TvDBV2 crosstvdb) => String.Format(Shoko.Models.Constants.URLS.TvDB_Series, crosstvdb.TvDBID);
-        public static string GetAniDBURL(this CrossRef_AniDB_TvDBV2 crosstvdb) => String.Format(Shoko.Models.Constants.URLS.AniDB_Series, crosstvdb.AnimeID);
-        public static string GetAniDBStartEpisodeTypeString(this CrossRef_AniDB_TvDBV2 crosstvdb) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crosstvdb.AniDBStartEpisodeType);
-        public static string GetAniDBStartEpisodeNumberString(this CrossRef_AniDB_TvDBV2 crosstvdb) => $"# {crosstvdb.AniDBStartEpisodeNumber}";
-        public static string GetTvDBSeasonNumberString(this CrossRef_AniDB_TvDBV2 crosstvdb) => $"S{crosstvdb.TvDBSeasonNumber}";
-        public static string GetTvDBStartEpisodeNumberString(this CrossRef_AniDB_TvDBV2 crosstvdb) => $"EP# {crosstvdb.TvDBStartEpisodeNumber}";
-        public static string GetShowURL(this CrossRef_AniDB_TraktV2 crosstrakt) => String.Format(Shoko.Models.Constants.URLS.Trakt_Series, crosstrakt.TraktID);
-        public static string GetAniDBURL(this CrossRef_AniDB_TraktV2 crosstrakt) => String.Format(Shoko.Models.Constants.URLS.AniDB_Series, crosstrakt.AnimeID);
-        public static string GetAniDBStartEpisodeTypeString(this CrossRef_AniDB_TraktV2 crosstrakt) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crosstrakt.AniDBStartEpisodeType);
-        public static string GetAniDBStartEpisodeNumberString(this CrossRef_AniDB_TraktV2 crosstrakt) => $"# {crosstrakt.AniDBStartEpisodeNumber}";
-        public static string GetTraktSeasonNumberString(this CrossRef_AniDB_TraktV2 crosstrakt) => $"S{crosstrakt.TraktSeasonNumber}";
-        public static string GetTraktStartEpisodeNumberString(this CrossRef_AniDB_TraktV2 crosstrakt) => $"EP# {crosstrakt.TraktStartEpisodeNumber}";
-
+        public static string GetSeriesURL(this CrossRef_AniDB crosstvdb) => String.Format(Shoko.Models.Constants.URLS.TvDB_Series, crosstvdb.ProviderID);
+        public static string GetAniDBURL(this CrossRef_AniDB crosstvdb) => String.Format(Shoko.Models.Constants.URLS.AniDB_Series, crosstvdb.AniDBID);
+        public static string GetAniDBStartEpisodeTypeString(this CrossRef_AniDB_EpisodeMap crosstvdb) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crosstvdb.AniDBStartEpisodeType);
+        public static string GetAniDBStartEpisodeNumberString(this CrossRef_AniDB_EpisodeMap crosstvdb) => $"# {crosstvdb.AniDBStartEpisodeNumber}";
+        public static string GetProviderSeasonNumberString(this CrossRef_AniDB_EpisodeMap crosstvdb) => $"S{crosstvdb.ProviderSeasonNumber}";
+        public static string GetProviderStartEpisodeNumberString(this CrossRef_AniDB_EpisodeMap crosstvdb) => $"EP# {crosstvdb.ProviderEpisodeNumber}";
+        public static string GetShowURL(this CrossRef_AniDB crosstrakt) => String.Format(Shoko.Models.Constants.URLS.Trakt_Series, crosstrakt.ProviderID);
+       
         public static string EpisodeTypeTranslated(this EpisodeType epType)
         {
             switch (epType)
