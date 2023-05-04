@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Shoko.Models.Server;
+using Shoko.Models.Client;
 
 namespace Shoko.Commons
 {
@@ -53,9 +53,9 @@ namespace Shoko.Commons
             return string.Empty;
         }
 
-        public bool IsValid(ImportFolder impfolder) => !string.IsNullOrEmpty(TranslateDirectory(impfolder, string.Empty));
+        public bool IsValid(CL_ImportFolder impfolder) => !string.IsNullOrEmpty(TranslateDirectory(impfolder, string.Empty));
 
-        public string TranslateFile(ImportFolder impfolder, string path)
+        public string TranslateFile(CL_ImportFolder impfolder, string path)
         {
             if (impfolder == null) return string.Empty;
             string result=TranslateFile(impfolder.ImportFolderID, path);
@@ -74,7 +74,7 @@ namespace Shoko.Commons
             }
             return result;
         }
-        public string TranslateDirectory(ImportFolder impfolder, string path)
+        public string TranslateDirectory(CL_ImportFolder impfolder, string path)
         {
             if (impfolder == null) return string.Empty;
             string result=TranslateDirectory(impfolder.ImportFolderID, path);

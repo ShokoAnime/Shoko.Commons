@@ -10,8 +10,6 @@ using Shoko.Commons.Utils;
 using Shoko.Models.Azure;
 using Shoko.Models.Client;
 using Shoko.Models.Enums;
-using Shoko.Models.Server;
-using Shoko.Models.TvDB;
 
 namespace Shoko.Commons.Extensions
 {
@@ -26,24 +24,25 @@ namespace Shoko.Commons.Extensions
 
         public static List<T> CastList<T>(this IEnumerable<dynamic> list) => list?.Cast<T>().ToList();
 
+#pragma warning disable 0618
         public static DateTime GetMessageDateAsDate(this Azure_AdminMessage message) => TimeZone.CurrentTimeZone.ToLocalTime(AniDB.GetAniDBDateAsDate((int) message.MessageDate).Value);
-
+#pragma warning restore 0618
 
         public static string ToStringEx(this Azure_AdminMessage message) => $"{message.AdminMessageId} - {message.GetMessageDateAsDate()} - {message.Message}";
 
-        public static double GetApprovalPercentage(this AniDB_Anime_Similar similar)
+        public static double GetApprovalPercentage(this CL_AniDB_Anime_Similar similar)
         {
             if (similar.Total == 0) return (double) 0;
             return (double) similar.Approval / (double) similar.Total * (double) 100;
         }
 
-        public static AnimeType GetAnimeTypeEnum(this AniDB_Anime anime)
+        public static AnimeType GetAnimeTypeEnum(this CL_AniDB_Anime anime)
         {
             if (anime.AnimeType > 5) return AnimeType.Other;
             return (AnimeType) anime.AnimeType;
         }
 
-        public static bool GetFinishedAiring(this AniDB_Anime anime)
+        public static bool GetFinishedAiring(this CL_AniDB_Anime anime)
         {
             if (!anime.EndDate.HasValue) return false; // ongoing
 
@@ -53,7 +52,7 @@ namespace Shoko.Commons.Extensions
             return false;
         }
 
-        public static bool IsInYear(this AniDB_Anime anime, int year)
+        public static bool IsInYear(this CL_AniDB_Anime anime, int year)
         {
             // We don't know when it airs, so it's not happened yet
             if (anime.AirDate == null) return false;
@@ -93,7 +92,7 @@ namespace Shoko.Commons.Extensions
             return anime?.AniDBAnime?.IsInYear(year) ?? false;
         }
 
-        public static bool IsInSeason(this AniDB_Anime anime, AnimeSeason season, int year)
+        public static bool IsInSeason(this CL_AniDB_Anime anime, AnimeSeason season, int year)
         {
             if (anime.AirDate == null) return false;
             // If it isn't a normal series, then it won't adhere to standard airing norms
@@ -160,7 +159,7 @@ namespace Shoko.Commons.Extensions
             return false;
         }
 
-        public static IEnumerable<(int Year, AnimeSeason Season)> GetSeasons(this AniDB_Anime anime)
+        public static IEnumerable<(int Year, AnimeSeason Season)> GetSeasons(this CL_AniDB_Anime anime)
         {
             if (anime?.AirDate == null) yield break;
 
@@ -176,16 +175,16 @@ namespace Shoko.Commons.Extensions
             }
         }
 
-        public static int GetAirDateAsSeconds(this AniDB_Anime anime) => AniDB.GetAniDBDateAsSeconds(anime.AirDate);
+        public static int GetAirDateAsSeconds(this CL_AniDB_Anime anime) => AniDB.GetAniDBDateAsSeconds(anime.AirDate);
 
-        public static string GetAirDateFormatted(this AniDB_Anime anime) => AniDB.GetAniDBDate(anime.GetAirDateAsSeconds());
+        public static string GetAirDateFormatted(this CL_AniDB_Anime anime) => AniDB.GetAniDBDate(anime.GetAirDateAsSeconds());
 
-        public static void SetAnimeTypeRAW(this AniDB_Anime anime, string value)
+        public static void SetAnimeTypeRAW(this CL_AniDB_Anime anime, string value)
         {
             anime.AnimeType = (int) RawToType(value);
         }
 
-        public static string GetAnimeTypeRAW(this AniDB_Anime anime) => ConvertToRAW((AnimeType) anime.AnimeType);
+        public static string GetAnimeTypeRAW(this CL_AniDB_Anime anime) => ConvertToRAW((AnimeType) anime.AnimeType);
 
         public static AnimeType RawToType(string raw)
         {
@@ -225,12 +224,12 @@ namespace Shoko.Commons.Extensions
             }
         }
 
-        public static string GetAnimeTypeName(this AniDB_Anime anime)
+        public static string GetAnimeTypeName(this CL_AniDB_Anime anime)
         {
             return Enum.GetName(typeof(AnimeType), (AnimeType) anime.AnimeType).Replace('_', ' ');
         }
 
-        public static HashSet<string> GetAllTags(this AniDB_Anime anime)
+        public static HashSet<string> GetAllTags(this CL_AniDB_Anime anime)
         {
             if (string.IsNullOrEmpty(anime.AllTags)) return new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
             lock (_alltagscache)
@@ -243,7 +242,7 @@ namespace Shoko.Commons.Extensions
             }
         }
 
-        public static HashSet<string> GetAllTitles(this AniDB_Anime anime)
+        public static HashSet<string> GetAllTitles(this CL_AniDB_Anime anime)
         {
             if (string.IsNullOrEmpty(anime.AllTitles)) return new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
             lock (_alltitlescache)
@@ -257,24 +256,24 @@ namespace Shoko.Commons.Extensions
             }
         }
 
-        public static bool GetSearchOnTvDB(this AniDB_Anime anime)
+        public static bool GetSearchOnTvDB(this CL_AniDB_Anime anime)
         {
             return anime.AnimeType != (int) AnimeType.Movie && !(anime.Restricted > 0);
         }
 
-        public static bool GetSearchOnMovieDB(this AniDB_Anime anime)
+        public static bool GetSearchOnMovieDB(this CL_AniDB_Anime anime)
         {
             return anime.AnimeType == (int) AnimeType.Movie && !(anime.Restricted > 0);
         }
 
-        public static decimal GetAniDBRating(this AniDB_Anime anime)
+        public static decimal GetAniDBRating(this CL_AniDB_Anime anime)
         {
             if (anime.GetAniDBTotalVotes() == 0)
                 return 0;
             return anime.GetAniDBTotalRating() / (decimal) anime.GetAniDBTotalVotes();
         }
 
-        public static decimal GetAniDBTotalRating(this AniDB_Anime anime)
+        public static decimal GetAniDBTotalRating(this CL_AniDB_Anime anime)
         {
             decimal totalRating = 0;
             totalRating += (decimal) anime.Rating * anime.VoteCount;
@@ -282,9 +281,9 @@ namespace Shoko.Commons.Extensions
             return totalRating;
         }
 
-        public static int GetAniDBTotalVotes(this AniDB_Anime anime) => anime.TempVoteCount + anime.VoteCount;
+        public static int GetAniDBTotalVotes(this CL_AniDB_Anime anime) => anime.TempVoteCount + anime.VoteCount;
 
-        public static string ToStringEx(this AniDB_Anime anime)
+        public static string ToStringEx(this CL_AniDB_Anime anime)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("AnimeID: " + anime.AnimeID);
@@ -296,7 +295,7 @@ namespace Shoko.Commons.Extensions
             return sb.ToString();
         }
 
-        public static string GetAirDateFormatted(this AniDB_Episode episode)
+        public static string GetAirDateFormatted(this CL_AniDB_Episode episode)
         {
             try
             {
@@ -308,9 +307,9 @@ namespace Shoko.Commons.Extensions
             }
         }
 
-        public static DateTime? GetAirDateAsDate(this AniDB_Episode episode) => AniDB.GetAniDBDateAsDate(episode.AirDate);
+        public static DateTime? GetAirDateAsDate(this CL_AniDB_Episode episode) => AniDB.GetAniDBDateAsDate(episode.AirDate);
 
-        public static bool GetFutureDated(this AniDB_Episode episode)
+        public static bool GetFutureDated(this CL_AniDB_Episode episode)
         {
             DateTime? date = episode.GetAirDateAsDate();
             if (date == null) return true;
@@ -318,20 +317,20 @@ namespace Shoko.Commons.Extensions
             return date.Value.ToLocalTime() > DateTime.Now;
         }
 
-        public static EpisodeType GetEpisodeTypeEnum(this AniDB_Episode episode) => (EpisodeType) episode.EpisodeType;
+        public static EpisodeType GetEpisodeTypeEnum(this CL_AniDB_Episode episode) => (EpisodeType) episode.EpisodeType;
 
-        public static bool IsWatched(this AnimeEpisode_User epuser) => epuser.WatchedCount > 0;
+        public static bool IsWatched(this CL_AnimeEpisode_User epuser) => epuser.WatchedCount > 0;
 
-        public static bool HasUnwatchedFiles(this AnimeGroup_User grpuser) => grpuser.UnwatchedEpisodeCount > 0;
-        public static bool HasAllFilesWatched(this AnimeGroup_User grpuser) => grpuser.UnwatchedEpisodeCount == 0;
-        public static bool HasAnyFilesWatched(this AnimeGroup_User grpuser) => grpuser.WatchedEpisodeCount > 0;
+        public static bool HasUnwatchedFiles(this CL_AnimeGroup_User grpuser) => grpuser.UnwatchedEpisodeCount > 0;
+        public static bool HasAllFilesWatched(this CL_AnimeGroup_User grpuser) => grpuser.UnwatchedEpisodeCount == 0;
+        public static bool HasAnyFilesWatched(this CL_AnimeGroup_User grpuser) => grpuser.WatchedEpisodeCount > 0;
 
 
-        public static GroupFilterConditionType GetConditionTypeEnum(this GroupFilterCondition grpf) => (GroupFilterConditionType) grpf.ConditionType;
+        public static GroupFilterConditionType GetConditionTypeEnum(this CL_GroupFilterCondition grpf) => (GroupFilterConditionType) grpf.ConditionType;
 
-        public static GroupFilterOperator GetConditionOperatorEnum(this GroupFilterCondition grpf) => (GroupFilterOperator) grpf.ConditionOperator;
+        public static GroupFilterOperator GetConditionOperatorEnum(this CL_GroupFilterCondition grpf) => (GroupFilterOperator) grpf.ConditionOperator;
 
-        public static HashSet<string> GetHideCategories(this JMMUser user)
+        public static HashSet<string> GetHideCategories(this CL_JMMUser user)
         {
             if (string.IsNullOrEmpty(user.HideCategories)) return new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
             lock (_hidecategoriescache)
@@ -346,7 +345,7 @@ namespace Shoko.Commons.Extensions
             }
         }
 
-        public static HashSet<string> GetPlexUsers(this JMMUser user)
+        public static HashSet<string> GetPlexUsers(this CL_JMMUser user)
         {
             if (string.IsNullOrEmpty(user.PlexUsers)) return new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
             lock (_plexuserscache)
@@ -368,7 +367,7 @@ namespace Shoko.Commons.Extensions
         /// <param name="grpstatus"></param>
         /// <param name="episodeNumber"></param>
         /// <returns></returns>
-        public static bool HasGroupReleasedEpisode(this AniDB_GroupStatus grpstatus, int episodeNumber)
+        public static bool HasGroupReleasedEpisode(this CL_AniDB_GroupStatus grpstatus, int episodeNumber)
         {
             // examples
             // 1-12
@@ -395,51 +394,10 @@ namespace Shoko.Commons.Extensions
             return false;
         }
 
-        public static ScanStatus GetScanStatus(this Scan scan) => (ScanStatus) scan.Status;
-
-        public static string GetStatusText(this Scan scan)
-        {
-            switch (scan.GetScanStatus())
-            {
-                case ScanStatus.Finish:
-                    return "Finished";
-                case ScanStatus.Running:
-                    return "Running";
-                default:
-                    return "Standby";
-            }
-        }
-
-        public static List<int> GetImportFolderList(this Scan scan) => scan.ImportFolders.Split(',').Select(a => int.Parse(a)).ToList();
-
-        public static string GetTitleText(this Scan scan) => scan.CreationTIme.ToString(CultureInfo.CurrentUICulture) + " (" + scan.ImportFolders + ")";
-        public static ScanFileStatus GetScanFileStatus(this ScanFile scanfile) => (ScanFileStatus) scanfile.Status;
-
-        public static string GetStatusText(this ScanFile scanfile)
-        {
-            switch (scanfile.GetScanFileStatus())
-            {
-                case ScanFileStatus.Waiting:
-                    return "Waiting";
-                case ScanFileStatus.ErrorFileNotFound:
-                    return "File Not Found";
-                case ScanFileStatus.ErrorInvalidHash:
-                    return "Hash do not match";
-                case ScanFileStatus.ErrorInvalidSize:
-                    return "Size do not match";
-                case ScanFileStatus.ErrorMissingHash:
-                    return "Missing Hash";
-                case ScanFileStatus.ErrorIOError:
-                    return "I/O Error";
-                default:
-                    return "Processed";
-            }
-        }
-
   
         public const int LastYear = 2050;
 
-        public static string GetYear(this AniDB_Anime anidbanime)
+        public static string GetYear(this CL_AniDB_Anime anidbanime)
         {
             string y = anidbanime.BeginYear.ToString();
             if (anidbanime.BeginYear != anidbanime.EndYear)
@@ -525,7 +483,7 @@ namespace Shoko.Commons.Extensions
 
         public static string GetLocalFileSystemFullPath(this CL_VideoLocal_Place vidlocalPlace) => FolderMappings.Instance.TranslateFile(vidlocalPlace.ImportFolder, vidlocalPlace.FilePath.Replace('/', Path.DirectorySeparatorChar));
 
-        public static string GetLocalFileSystemFullPath(this ImportFolder folder) => FolderMappings.Instance.TranslateDirectory(folder, Path.DirectorySeparatorChar.ToString());
+        public static string GetLocalFileSystemFullPath(this CL_ImportFolder folder) => FolderMappings.Instance.TranslateDirectory(folder, Path.DirectorySeparatorChar.ToString());
 
         public static string GetFullPath(this CL_VideoLocal_Place vidlocalPlace) =>
             vidlocalPlace.ImportFolder?.ImportFolderLocation == null
@@ -684,13 +642,13 @@ namespace Shoko.Commons.Extensions
 
         public static string GetAniDB_SiteURL(this CL_VideoDetailed videodetailed) => videodetailed.AniDB_FileID.HasValue ? string.Format(Shoko.Models.Constants.URLS.AniDB_File, videodetailed.AniDB_FileID.Value) : "";
 
-        public static string GetBannerURL(this TVDB_Series_Search_Response sresponse) => string.IsNullOrEmpty(sresponse.Banner) ? "" : string.Format(Shoko.Models.Constants.URLS.TvDB_Images, sresponse.Banner);
+        public static string GetBannerURL(this CL_TVDB_Series_Search_Response sresponse) => string.IsNullOrEmpty(sresponse.Banner) ? "" : string.Format(Shoko.Models.Constants.URLS.TvDB_Images, sresponse.Banner);
         
-        public static string GetSeriesURL(this TVDB_Series_Search_Response sresponse) => string.Format(Shoko.Models.Constants.URLS.TvDB_Series, sresponse.SeriesID);
+        public static string GetSeriesURL(this CL_TVDB_Series_Search_Response sresponse) => string.Format(Shoko.Models.Constants.URLS.TvDB_Series, sresponse.SeriesID);
 
-        public static string GetLanguageFlagImage(this TVDB_Series_Search_Response sresponse) => Languages.Languages.GetFlagImage(sresponse.Language.Trim().ToUpper());
+        public static string GetLanguageFlagImage(this CL_TVDB_Series_Search_Response sresponse) => Languages.Languages.GetFlagImage(sresponse.Language.Trim().ToUpper());
 
-        public static string GetLanguageFlagImage(this TvDB_Language tvdblanguage) => Languages.Languages.GetFlagImage(tvdblanguage.Abbreviation.Trim().ToUpper());
+        public static string GetLanguageFlagImage(this CL_TvDB_Language tvdblanguage) => Languages.Languages.GetFlagImage(tvdblanguage.Abbreviation.Trim().ToUpper());
 
         public static string GetTraktID(this CL_TraktTVShowResponse showresponse)
         {
@@ -1037,8 +995,8 @@ namespace Shoko.Commons.Extensions
 
 
 
-        public static string GetSiteURL(this CrossRef_AniDB_MAL crossanidb) => string.Format(Shoko.Models.Constants.URLS.MAL_Series, crossanidb.MALID);
-        public static string GetStartEpisodeTypeString(this CrossRef_AniDB_MAL crossanidb) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crossanidb.StartEpisodeType);
+        public static string GetSiteURL(this CL_CrossRef_AniDB_MAL crossanidb) => string.Format(Shoko.Models.Constants.URLS.MAL_Series, crossanidb.MALID);
+        public static string GetStartEpisodeTypeString(this CL_CrossRef_AniDB_MAL crossanidb) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crossanidb.StartEpisodeType);
 
         public static string GetSiteURL(this CL_MovieDBMovieSearch_Response sresult) => string.Format(Shoko.Models.Constants.URLS.MovieDB_Series, sresult.MovieID);
 
@@ -1100,18 +1058,18 @@ namespace Shoko.Commons.Extensions
         public static string GetPrettyDescription(this CL_GroupFileSummary grpsummary) => $"{grpsummary.GroupNameShort} - {grpsummary.FileCountNormal}/{grpsummary.FileCountSpecials} Files";
 
 
-        public static string GetCommentTruncated(this AniDB_Recommendation recommendation)
+        public static string GetCommentTruncated(this CL_AniDB_Recommendation recommendation)
         {
             if (recommendation.RecommendationText.Length > 250)
                 return recommendation.RecommendationText.Substring(0, 250) + ".......";
             return recommendation.RecommendationText;
         }
 
-        public static string GetComment(this AniDB_Recommendation recommendation) => recommendation.RecommendationText;
+        public static string GetComment(this CL_AniDB_Recommendation recommendation) => recommendation.RecommendationText;
 
-        public static AniDBRecommendationType GetRecommendationTypeEnum(this AniDB_Recommendation recommendation) => (AniDBRecommendationType) recommendation.RecommendationType;
+        public static AniDBRecommendationType GetRecommendationTypeEnum(this CL_AniDB_Recommendation recommendation) => (AniDBRecommendationType) recommendation.RecommendationType;
 
-        public static string GetRecommendationTypeText(this AniDB_Recommendation recommendation)
+        public static string GetRecommendationTypeText(this CL_AniDB_Recommendation recommendation)
         {
             switch (recommendation.GetRecommendationTypeEnum())
             {
@@ -1126,19 +1084,19 @@ namespace Shoko.Commons.Extensions
             }
         }
 
-        public static string GetSiteURL(this MovieDB_Movie movie) => string.Format(Shoko.Models.Constants.URLS.MovieDB_Series, movie.MovieId);
-        public static string GetSeriesURL(this CrossRef_AniDB_TvDBV2 crosstvdb) => string.Format(Shoko.Models.Constants.URLS.TvDB_Series, crosstvdb.TvDBID);
-        public static string GetAniDBURL(this CrossRef_AniDB_TvDBV2 crosstvdb) => string.Format(Shoko.Models.Constants.URLS.AniDB_Series, crosstvdb.AnimeID);
-        public static string GetAniDBStartEpisodeTypeString(this CrossRef_AniDB_TvDBV2 crosstvdb) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crosstvdb.AniDBStartEpisodeType);
-        public static string GetAniDBStartEpisodeNumberString(this CrossRef_AniDB_TvDBV2 crosstvdb) => $"# {crosstvdb.AniDBStartEpisodeNumber}";
-        public static string GetTvDBSeasonNumberString(this CrossRef_AniDB_TvDBV2 crosstvdb) => $"S{crosstvdb.TvDBSeasonNumber}";
-        public static string GetTvDBStartEpisodeNumberString(this CrossRef_AniDB_TvDBV2 crosstvdb) => $"EP# {crosstvdb.TvDBStartEpisodeNumber}";
-        public static string GetShowURL(this CrossRef_AniDB_TraktV2 crosstrakt) => string.Format(Shoko.Models.Constants.URLS.Trakt_Series, crosstrakt.TraktID);
-        public static string GetAniDBURL(this CrossRef_AniDB_TraktV2 crosstrakt) => string.Format(Shoko.Models.Constants.URLS.AniDB_Series, crosstrakt.AnimeID);
-        public static string GetAniDBStartEpisodeTypeString(this CrossRef_AniDB_TraktV2 crosstrakt) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crosstrakt.AniDBStartEpisodeType);
-        public static string GetAniDBStartEpisodeNumberString(this CrossRef_AniDB_TraktV2 crosstrakt) => $"# {crosstrakt.AniDBStartEpisodeNumber}";
-        public static string GetTraktSeasonNumberString(this CrossRef_AniDB_TraktV2 crosstrakt) => $"S{crosstrakt.TraktSeasonNumber}";
-        public static string GetTraktStartEpisodeNumberString(this CrossRef_AniDB_TraktV2 crosstrakt) => $"EP# {crosstrakt.TraktStartEpisodeNumber}";
+        public static string GetSiteURL(this CL_MovieDB_Movie movie) => string.Format(Shoko.Models.Constants.URLS.MovieDB_Series, movie.MovieId);
+        public static string GetSeriesURL(this CL_CrossRef_AniDB_TvDB crosstvdb) => string.Format(Shoko.Models.Constants.URLS.TvDB_Series, crosstvdb.TvDBID);
+        public static string GetAniDBURL(this CL_CrossRef_AniDB_TvDB crosstvdb) => string.Format(Shoko.Models.Constants.URLS.AniDB_Series, crosstvdb.AnimeID);
+        public static string GetAniDBStartEpisodeTypeString(this CL_CrossRef_AniDB_TvDB crosstvdb) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crosstvdb.AniDBStartEpisodeType);
+        public static string GetAniDBStartEpisodeNumberString(this CL_CrossRef_AniDB_TvDB crosstvdb) => $"# {crosstvdb.AniDBStartEpisodeNumber}";
+        public static string GetTvDBSeasonNumberString(this CL_CrossRef_AniDB_TvDB crosstvdb) => $"S{crosstvdb.TvDBSeasonNumber}";
+        public static string GetTvDBStartEpisodeNumberString(this CL_CrossRef_AniDB_TvDB crosstvdb) => $"EP# {crosstvdb.TvDBStartEpisodeNumber}";
+        public static string GetShowURL(this CL_CrossRef_AniDB_Trakt crosstrakt) => string.Format(Shoko.Models.Constants.URLS.Trakt_Series, crosstrakt.TraktID);
+        public static string GetAniDBURL(this CL_CrossRef_AniDB_Trakt crosstrakt) => string.Format(Shoko.Models.Constants.URLS.AniDB_Series, crosstrakt.AnimeID);
+        public static string GetAniDBStartEpisodeTypeString(this CL_CrossRef_AniDB_Trakt crosstrakt) => EnumTranslator.EpisodeTypeTranslated((EpisodeType) crosstrakt.AniDBStartEpisodeType);
+        public static string GetAniDBStartEpisodeNumberString(this CL_CrossRef_AniDB_Trakt crosstrakt) => $"# {crosstrakt.AniDBStartEpisodeNumber}";
+        public static string GetTraktSeasonNumberString(this CL_CrossRef_AniDB_Trakt crosstrakt) => $"S{crosstrakt.TraktSeasonNumber}";
+        public static string GetTraktStartEpisodeNumberString(this CL_CrossRef_AniDB_Trakt crosstrakt) => $"EP# {crosstrakt.TraktStartEpisodeNumber}";
 
         public static string EpisodeTypeTranslated(this EpisodeType epType)
         {
@@ -1188,24 +1146,18 @@ namespace Shoko.Commons.Extensions
 
 
 
-        public static bool IsAdminUser(this JMMUser JMMUser) => JMMUser.IsAdmin == 1;
+        public static bool IsAdminUser(this CL_JMMUser JMMUser) => JMMUser.IsAdmin == 1;
 
-        public static bool IsAniDBUserBool(this JMMUser JMMUser) => JMMUser.IsAniDBUser == 1;
+        public static bool IsAniDBUserBool(this CL_JMMUser JMMUser) => JMMUser.IsAniDBUser == 1;
 
-        public static bool IsTraktUserBool(this JMMUser JMMUser) => JMMUser.IsTraktUser == 1;
+        public static bool IsTraktUserBool(this CL_JMMUser JMMUser) => JMMUser.IsTraktUser == 1;
 
-        public static bool IsFolderDropSource(this ImportFolder ImportFolder) => ImportFolder.IsDropSource == 1;
+        public static bool IsFolderDropSource(this CL_ImportFolder ImportFolder) => ImportFolder.IsDropSource == 1;
 
-        public static bool IsFolderDropDestination(this ImportFolder ImportFolder) => ImportFolder.IsDropDestination == 1;
+        public static bool IsFolderDropDestination(this CL_ImportFolder ImportFolder) => ImportFolder.IsDropDestination == 1;
 
-        public static bool IsFolderWatched(this ImportFolder ImportFolder) => ImportFolder.IsWatched == 1;
+        public static bool IsFolderWatched(this CL_ImportFolder ImportFolder) => ImportFolder.IsWatched == 1;
 
         public static bool HasMessageURL(this Azure_AdminMessage msg) => !string.IsNullOrEmpty(msg.MessageURL);
-
-        public static bool HasMissingEpisodesAny(this AnimeGroup grp) => grp.MissingEpisodeCount > 0 || grp.MissingEpisodeCountGroups > 0;
-
-        public static bool HasMissingEpisodesGroups(this AnimeGroup gr) => gr.MissingEpisodeCountGroups > 0;
-
-        public static bool HasMissingEpisodes(this AnimeGroup grp) => grp.MissingEpisodeCountGroups > 0;
     }
 }
