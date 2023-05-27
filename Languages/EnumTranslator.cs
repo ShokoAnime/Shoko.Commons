@@ -1,5 +1,5 @@
 ﻿using System.Threading;
-using Shoko.Models.Enums;
+using Shoko.Plugin.Abstractions.Enums;
 
 namespace Shoko.Commons.Languages
 {
@@ -12,10 +12,10 @@ namespace Shoko.Commons.Languages
 
             switch (epType)
             {
-                case EpisodeType.Credits:
-                    return Properties.Resources.EpisodeType_Credits;
-                case EpisodeType.Episode:
+                case EpisodeType.Normal:
                     return Properties.Resources.EpisodeType_Normal;
+                case EpisodeType.ThemeSong:
+                    return Properties.Resources.EpisodeType_Credits;
                 case EpisodeType.Other:
                     return Properties.Resources.EpisodeType_Other;
                 case EpisodeType.Parody:
@@ -34,14 +34,14 @@ namespace Shoko.Commons.Languages
         {
             Thread.CurrentThread.CurrentUICulture = Culture.Global;
 
-            if (epType == Properties.Resources.EpisodeType_Credits) return EpisodeType.Credits;
-            if (epType == Properties.Resources.EpisodeType_Normal) return EpisodeType.Episode;
+            if (epType == Properties.Resources.EpisodeType_Credits) return EpisodeType.ThemeSong;
+            if (epType == Properties.Resources.EpisodeType_Normal) return EpisodeType.Normal;
             if (epType == Properties.Resources.EpisodeType_Other) return EpisodeType.Other;
             if (epType == Properties.Resources.EpisodeType_Parody) return EpisodeType.Parody;
             if (epType == Properties.Resources.EpisodeType_Trailer) return EpisodeType.Trailer;
             if (epType == Properties.Resources.EpisodeType_Specials) return EpisodeType.Special;
 
-            return EpisodeType.Episode;
+            return EpisodeType.Normal;
         }
     }
 }

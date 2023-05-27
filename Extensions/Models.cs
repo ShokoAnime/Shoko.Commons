@@ -10,6 +10,7 @@ using Shoko.Commons.Utils;
 using Shoko.Models.Azure;
 using Shoko.Models.Client;
 using Shoko.Models.Enums;
+using Shoko.Plugin.Abstractions.Enums;
 
 namespace Shoko.Commons.Extensions
 {
@@ -96,7 +97,7 @@ namespace Shoko.Commons.Extensions
         {
             if (anime.AirDate == null) return false;
             // If it isn't a normal series, then it won't adhere to standard airing norms
-            if (anime.AnimeType != (int) AnimeType.TVSeries && anime.AnimeType != (int) AnimeType.Web) return false;
+            if (anime.AnimeType != (int) AnimeType.TV && anime.AnimeType != (int) AnimeType.Web) return false;
             return IsInSeason(anime.AirDate.Value, anime.EndDate, season, year);
         }
 
@@ -195,7 +196,7 @@ namespace Shoko.Commons.Extensions
                 case "ova":
                     return AnimeType.OVA;
                 case "tv series":
-                    return AnimeType.TVSeries;
+                    return AnimeType.TV;
                 case "tv special":
                     return AnimeType.TVSpecial;
                 case "web":
@@ -213,7 +214,7 @@ namespace Shoko.Commons.Extensions
                     return "movie";
                 case AnimeType.OVA:
                     return "ova";
-                case AnimeType.TVSeries:
+                case AnimeType.TV:
                     return "tv series";
                 case AnimeType.TVSpecial:
                     return "tv special";
@@ -457,10 +458,10 @@ namespace Shoko.Commons.Extensions
                 EpisodeType epType = (EpisodeType) dupfile.EpisodeType.Value;
                 switch (epType)
                 {
-                    case EpisodeType.Credits:
+                    case EpisodeType.ThemeSong:
                         shortType = "C";
                         break;
-                    case EpisodeType.Episode:
+                    case EpisodeType.Normal:
                         shortType = "";
                         break;
                     case EpisodeType.Other:
@@ -1102,9 +1103,9 @@ namespace Shoko.Commons.Extensions
         {
             switch (epType)
             {
-                case EpisodeType.Credits:
+                case EpisodeType.ThemeSong:
                     return Resources.EpisodeType_Credits;
-                case EpisodeType.Episode:
+                case EpisodeType.Normal:
                     return Resources.EpisodeType_Normal;
                 case EpisodeType.Other:
                     return Resources.EpisodeType_Other;
