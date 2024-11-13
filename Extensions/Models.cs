@@ -339,7 +339,7 @@ namespace Shoko.Commons.Extensions
             }
         }
 
-        public static void ClearHideCategories(this JMMUser user)
+        public static void InvalidateHideCategoriesCache(this JMMUser user)
         {
             lock (_hidecategoriescache)
             {
